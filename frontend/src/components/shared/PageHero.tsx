@@ -1,0 +1,59 @@
+"use client";
+
+import { useRef } from "react";
+import Link from "next/link";
+import { gsap, useGSAP } from "@/lib/gsap";
+import { Photo } from "@/components/ui/Photo";
+import { Eyebrow } from "@/components/ui/SectionHeading";
+import type { Photo as PhotoType } from "@/types";
+
+interface PageHeroProps {
+  eyebrow: string;
+  title: React.ReactNode;
+  description: React.ReactNode;
+  crumb: string;
+  photo?: PhotoType;
+  children?: React.ReactNode;
+}
+
+/** Inner-page header: breadcrumb, eyebrow pill, bold title with orange highlight, intro, optional photo. */
+export function PageHero({ eyebrow, title, description, crumb, photo, children }: PageHeroProps) {
+  const root = useRef<HTMLElement>(null);
+  useGSAP(
+    () => {
+      gsap.set("[data-intro-hide]", { visibility: "visible" });
+      const mm = gsap.matchMedia();
+      mm.add("(prefers-reduced-motion: no-preference)", () => {
+        gsap.timeline({ defaults: { ease: "expo.out" } })
+          .from("[data-ph]", { y: 26, opacity: 0, stagger: 0.07, duration: 1 })
+          .from("[data-ph-photo]", { y: 40, opacity: 0, duration: 1.2 }, 0.1);
+      });
+      return () => mm.revert();
+    },
+    { scope: root },
+  );
+
+  return (
+    <section ref={root} className="hero-wash relative overflow-hidden pt-28 pb-16 md:pb-20">
+      <div aria-hidden className="dot-grid pointer-events-none absolute inset-0 opacity-60 [mask-image:radial-gradient(60%_60%_at_30%_30%,#000,transparent)]" />
+      <div data-intro-hide className="container-x relative">
+        <nav data-ph aria-label="Breadcrumb" className="text-[12px] text-mute">
+          <Link href="/" className="hover:text-accent">Home</Link> <span aria-hidden>›</span> <span aria-current="page" className="text-fg">{crumb}</span>
+        </nav>
+        <div className={photo ? "mt-10 grid items-center gap-12 lg:grid-cols-[1.1fr_1fr]" : "mx-auto mt-12 max-w-3xl text-center"}>
+          <div>
+            <span data-ph><Eyebrow>{eyebrow}</Eyebrow></span>
+            <h1 data-ph className="display mt-5 text-[clamp(2.3rem,4.6vw,3.8rem)]">{title}</h1>
+            <p data-ph className={`mt-5 text-[17px] leading-relaxed text-mute ${photo ? "max-w-xl" : "mx-auto max-w-2xl"}`}>{description}</p>
+            {children && <div data-ph className="mt-8">{children}</div>}
+          </div>
+          {photo && (
+            <div data-ph-photo className="relative aspect-[4/3] overflow-hidden rounded-3xl shadow-[0_40px_80px_-40px_rgba(28,31,48,0.5)]">
+              <Photo photo={photo} priority sizes="(max-width: 1024px) 100vw, 45vw" />
+            </div>
+          )}
+        </div>
+      </div>
+    </section>
+  );
+}

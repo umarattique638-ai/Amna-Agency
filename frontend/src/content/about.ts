@@ -67,7 +67,6 @@ export const aboutPage = {
   mission: {
     title: ["Great marketing shouldn't be a luxury.", "It should be how every business grows."],
     text: "For years, small and growing businesses had two bad options: cheap freelancers who disappear, or big agencies with big retainers. We built Axiom to be the third option — a senior, full-service team that is honest about budgets and obsessed with results.",
-    photo: photos.teamPresenting,
   },
   whatWeDo: [
     { icon: "</>", title: "We build", text: "Fast, secure websites and web apps on the MERN stack — designed to rank on Google and convert visitors into customers." },
@@ -80,7 +79,6 @@ export const aboutPage = {
     { title: "Numbers you can see", text: "Every project starts with clear goals — speed, leads, followers or sales — and we report against them." },
   ],
   nameStory: "An axiom is a statement so true it doesn't need proving. That's how we see good work: fast websites, clear design and campaigns that pay for themselves should speak for themselves.",
-  differentPhoto: photos.designTablet,
   founderQuote:
     "We started Axiom because we kept meeting business owners who had been burned — a website nobody could update, an Instagram account that went quiet, ads that spent money without a single lead. We wanted to be the team we'd hire ourselves: straightforward, skilled and accountable for results.",
 };

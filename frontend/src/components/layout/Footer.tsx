@@ -3,7 +3,6 @@ import { siteConfig } from "@/config/site";
 import { mainNav } from "@/config/navigation";
 import { services } from "@/content/services";
 import { Logo } from "@/components/ui/Logo";
-import { NewsletterForm } from "./NewsletterForm";
 
 const ICONS = {
   mail: "M4 6h16v12H4zM4 7l8 6 8-6",
@@ -72,26 +71,7 @@ export function Footer() {
         </div>
       </div>
 
-      <div className="container-x">
-        <div className="grid items-center gap-8 rounded-3xl border border-accent/60 bg-white/[0.03] p-7 md:grid-cols-[auto_1fr_auto] md:p-9">
-          <span aria-hidden className="grid size-16 place-items-center rounded-2xl bg-gradient-to-br from-[#1b6fff] to-[#3b89ff] text-3xl blue-glow">🚀</span>
-          <div>
-            <p className="text-[clamp(1.3rem,2.2vw,1.75rem)] leading-tight font-black">Ready to launch your next project?</p>
-            <p className="mt-1.5 text-[14.5px] text-white/65">Get a free plan and fixed quote within 24 hours.</p>
-          </div>
-          <div className="space-y-3">
-            <Link
-              href="/contact"
-              className="group inline-flex items-center gap-2 rounded-full bg-gradient-to-br from-[#1b6fff] to-[#3b89ff] px-7 py-3.5 text-[15px] font-bold blue-glow transition-transform hover:-translate-y-0.5"
-            >
-              Get Quote <span aria-hidden className="transition-transform group-hover:translate-x-1">→</span>
-            </Link>
-          </div>
-        </div>
-        <div className="mx-auto mt-10 max-w-md"><NewsletterForm /></div>
-      </div>
-
-      <div className="mt-12 border-t border-white/10">
+      <div className="border-t border-white/10">
         <div className="container-x flex flex-wrap items-center justify-between gap-4 py-6 text-[13px] text-white/50">
           <p>© {year} {siteConfig.legalName}. All rights reserved. Founded by {siteConfig.founders.map((f) => f.name).join(" & ")}.</p>
           <p>React · Next.js · Node.js · Express · MongoDB · Tailwind CSS</p>

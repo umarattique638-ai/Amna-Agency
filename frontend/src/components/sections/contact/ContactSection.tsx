@@ -8,28 +8,14 @@ import { ContactForm } from "./ContactForm";
 export function ContactSection({ defaultEmail }: { defaultEmail?: string }) {
   return (
     <section id="enquiry" aria-label="Contact form and details" className="scroll-mt-24 bg-surface py-12 md:py-16">
-      <div className="container-x grid items-start gap-8 lg:grid-cols-[1.75fr_1fr] lg:gap-8">
-        {/* form card */}
-        <Reveal className="relative overflow-hidden rounded-[28px] border border-line bg-white shadow-[0_40px_80px_-50px_rgba(4,31,115,0.45)]">
-          <div className="navy-gradient relative overflow-hidden px-6 py-4 text-white md:px-7">
-            <span aria-hidden className="absolute -top-16 -right-10 size-48 rounded-full border-[28px] border-white/5" />
-            <div className="relative flex flex-wrap items-center justify-between gap-4">
-              <div>
-                <h2 className="text-[20px] font-extrabold tracking-tight">Tell us about your project</h2>
-                <p className="mt-0.5 text-[14px] text-white/70">Takes about a minute · fields with * are required</p>
-              </div>
-              <span className="flex items-center gap-2 rounded-full bg-white/10 px-3.5 py-1.5 text-[12.5px] font-bold ring-1 ring-white/20">
-                <LineIcon name="clock" className="size-4" /> Reply within 24h
-              </span>
-            </div>
-          </div>
-          <div className="p-5 md:px-7 md:py-6">
-            <ContactForm defaultEmail={defaultEmail} />
-          </div>
+      <div className="container-x grid gap-8 lg:grid-cols-[1.75fr_1fr] lg:items-stretch lg:gap-8">
+        {/* form card — stretches to the sidebar's height */}
+        <Reveal className="flex h-full flex-col rounded-[28px] border border-line bg-white p-6 shadow-[0_40px_80px_-50px_rgba(4,31,115,0.45)] md:p-8">
+          <ContactForm defaultEmail={defaultEmail} />
         </Reveal>
 
         {/* sidebar */}
-        <div className="space-y-5">
+        <div className="flex flex-col gap-5">
           <Reveal as="ul" stagger className="space-y-3.5">
             {contactMethods.map((m) => {
               const inner = (
@@ -59,7 +45,7 @@ export function ContactSection({ defaultEmail }: { defaultEmail?: string }) {
             })}
           </Reveal>
 
-          <Reveal className="relative overflow-hidden rounded-[24px] bg-[linear-gradient(140deg,#020b2f_0%,#041f73_60%,#1b6fff_130%)] p-7 text-white">
+          <Reveal className="relative flex-1 overflow-hidden rounded-[24px] bg-[linear-gradient(140deg,#020b2f_0%,#041f73_60%,#1b6fff_130%)] p-7 text-white">
             <span aria-hidden className="absolute -right-14 -bottom-16 size-48 rounded-full border-[30px] border-white/5" />
             <p className="relative text-lg font-extrabold">What happens next?</p>
             <ol className="relative mt-6 space-y-0">
@@ -74,25 +60,21 @@ export function ContactSection({ defaultEmail }: { defaultEmail?: string }) {
                 </li>
               ))}
             </ol>
-          </Reveal>
-
-          <Reveal className="flex items-center gap-3 rounded-2xl border border-line bg-white p-4 text-[13px] text-mute">
-            <span className="grid size-10 shrink-0 place-items-center rounded-xl bg-emerald-50 text-emerald-600"><LineIcon name="shield" /></span>
-            Your details stay private — we never share or sell them.
-          </Reveal>
-
-          <Reveal>
             <a
               href={siteConfig.whatsapp}
               target="_blank"
               rel="noreferrer noopener"
-              className="group flex items-center justify-center gap-3 rounded-2xl bg-[#25d366] px-6 py-4 font-bold text-white shadow-[0_18px_35px_-18px_rgba(37,211,102,0.9)] transition-transform hover:-translate-y-0.5"
+              className="group relative mt-7 flex items-center justify-center gap-2.5 rounded-xl bg-[#25d366] px-5 py-3.5 text-[15px] font-bold text-white shadow-[0_14px_30px_-14px_rgba(37,211,102,0.9)] transition-transform hover:-translate-y-0.5"
             >
-              <FaWhatsapp className="size-6" aria-hidden />
-              Prefer WhatsApp? Chat with us now
+              <FaWhatsapp className="size-5" aria-hidden />
+              Prefer WhatsApp? Chat now
               <span aria-hidden className="transition-transform group-hover:translate-x-1">→</span>
             </a>
+            <p className="relative mt-3 flex items-center justify-center gap-1.5 text-[12px] text-white/55">
+              <LineIcon name="shield" className="size-3.5" /> Your details stay private — never shared or sold.
+            </p>
           </Reveal>
+
         </div>
       </div>
     </section>

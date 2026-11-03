@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { CtaBanner } from "@/components/shared/CtaBanner";
 import { AboutHero } from "@/components/sections/about/AboutHero";
-import { Different, Mission, TeamsSection, WhatWeDo } from "@/components/sections/about/AboutSections";
+import { Mission, TeamsSection, WhatWeDo } from "@/components/sections/about/AboutSections";
+import { Different } from "@/components/sections/about/Different";
 import { Journey } from "@/components/sections/about/Journey";
 import { Founders } from "@/components/sections/about/Founders";
 

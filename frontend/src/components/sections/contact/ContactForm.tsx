@@ -73,7 +73,7 @@ export function ContactForm({ defaultEmail = "" }: { defaultEmail?: string }) {
   }
 
   return (
-    <form onSubmit={onSubmit} noValidate className="space-y-4">
+    <form onSubmit={onSubmit} noValidate className="flex h-full flex-col gap-5">
       <div className="grid gap-4 sm:grid-cols-2">
         <TextField id="name" name="name" label="Your name *" placeholder="Jane Doe" autoComplete="name" error={errors.name} icon={<LineIcon name="user" className="size-[18px]" />} />
         <TextField id="email" name="email" type="email" label="Email *" placeholder="jane@company.com" autoComplete="email" defaultValue={defaultEmail} error={errors.email} icon={<LineIcon name="mail" className="size-[18px]" />} />
@@ -83,18 +83,20 @@ export function ContactForm({ defaultEmail = "" }: { defaultEmail?: string }) {
 
       <PillGroup legend="I'm interested in *" name="services" multiple options={SERVICE_OPTIONS} value={services} onChange={setServices} error={errors.services} />
 
-      <div className="grid gap-5 md:grid-cols-[1fr_1.25fr] md:items-start">
-        <div className="rounded-2xl border border-line bg-surface/60 px-4 pt-3.5 pb-3">
-          <BudgetSlider value={budget} onChange={setBudget} error={errors.budget} />
-        </div>
-        <TextAreaField id="message" name="message" label="Tell us about the project *" placeholder="Goals, timeline, links…" rows={4} error={errors.message} />
+      <div className="rounded-2xl border border-line bg-surface/60 px-5 pt-4 pb-3">
+        <BudgetSlider value={budget} onChange={setBudget} error={errors.budget} />
       </div>
+
+      <TextAreaField grow id="message" name="message" label="Tell us about the project *" placeholder="What do you need, your goals, timeline and any links (current website, Instagram, references)…" rows={4} error={errors.message} />
 
       {/* honeypot */}
       <input type="text" name="website" tabIndex={-1} autoComplete="off" className="hidden" aria-hidden />
 
-      <div className="flex flex-wrap items-center gap-x-6 gap-y-3 border-t border-line pt-4">
-        <Button type="submit" size="lg" disabled={status === "submitting"} className="min-w-52">
+      <div className="flex flex-wrap items-center justify-between gap-x-6 gap-y-3 border-t border-line pt-5">
+        <p className="flex items-center gap-2 text-[13px] text-mute">
+          <LineIcon name="clock" className="size-4 text-accent" /> We reply within 24 hours · <span className="text-fg/70">* required</span>
+        </p>
+        <Button type="submit" size="lg" disabled={status === "submitting"} className="ml-auto min-w-52">
           {status === "submitting" ? (
             <>
               <span aria-hidden className="size-4 animate-spin rounded-full border-2 border-white border-t-transparent" /> Sending…

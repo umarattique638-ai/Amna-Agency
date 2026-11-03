@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useRef } from "react";
 import { gsap, useGSAP } from "@/lib/gsap";
 import { aboutHero } from "@/content/about";
-import { Photo } from "@/components/ui/Photo";
+import { StudioBanner } from "@/components/visuals/StudioBanner";
 import { ButtonLink } from "@/components/ui/Button";
 import { Eyebrow } from "@/components/ui/SectionHeading";
 
@@ -48,11 +48,9 @@ export function AboutHero() {
             </div>
           </div>
 
-          <div data-a-visual className="relative">
-            <div className="relative aspect-[5/4] overflow-hidden rounded-3xl shadow-[0_40px_80px_-40px_rgba(28,31,48,0.5)]">
-              <Photo photo={aboutHero.photo} priority sizes="(max-width: 1024px) 100vw, 45vw" />
-            </div>
-            <dl className="absolute -bottom-8 left-1/2 grid w-[92%] -translate-x-1/2 grid-cols-4 divide-x divide-line rounded-2xl border border-line bg-page py-4 shadow-xl">
+          <div data-a-visual className="relative pb-10">
+            <StudioBanner />
+            <dl className="absolute bottom-0 left-1/2 z-10 grid w-[88%] -translate-x-1/2 grid-cols-4 divide-x divide-line rounded-2xl border border-line bg-page py-4 shadow-xl">
               {aboutHero.stats.map((s) => (
                 <div key={s.label} className="flex flex-col-reverse items-center px-2 text-center">
                   <dt className="text-[11px] text-mute">{s.label}</dt>

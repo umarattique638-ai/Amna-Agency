@@ -64,9 +64,9 @@ export const stats: Stat[] = [
 
 export const whyChoose = {
   features: [
-    { icon: "◎", title: "One team, every channel", text: "Developers, designers, editors and marketers under one roof." },
-    { icon: "▤", title: "Clear weekly updates", text: "Progress links and simple reports — no confusing jargon." },
-    { icon: "✓", title: "No lock-in", text: "Your code, designs, accounts and data always belong to you." },
+    { icon: "layers", title: "One team, every channel", text: "Developers, designers, editors and marketers under one roof." },
+    { icon: "clock", title: "Clear weekly updates", text: "Progress links and simple reports — no confusing jargon." },
+    { icon: "shield", title: "No lock-in", text: "Your code, designs, accounts and data always belong to you." },
   ],
   cards: [
     { n: "01", title: "Development-first agency", text: "Our core is engineering. Your site is built properly on React, Next.js and Node — not a slow page builder." },

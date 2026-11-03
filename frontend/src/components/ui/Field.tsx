@@ -43,16 +43,16 @@ export function TextField({ label, error, className, id, icon, ...rest }: FieldP
   );
 }
 
-export function TextAreaField({ label, error, className, id, ...rest }: FieldProps & ComponentPropsWithoutRef<"textarea">) {
+export function TextAreaField({ label, error, className, id, grow, ...rest }: FieldProps & { grow?: boolean } & ComponentPropsWithoutRef<"textarea">) {
   return (
-    <label htmlFor={id} className={cn("block", className)}>
+    <label htmlFor={id} className={cn(grow ? "flex flex-1 flex-col" : "block", className)}>
       <Label>{label}</Label>
       <textarea
         id={id}
         rows={4}
         aria-invalid={!!error}
         aria-describedby={error ? `${id}-err` : undefined}
-        className={cn(boxBase, "block resize-none px-4 py-3 leading-relaxed")}
+        className={cn(boxBase, "block resize-none px-4 py-3 leading-relaxed", grow && "min-h-28 flex-1")}
         {...rest}
       />
       <Err id={`${id}-err`}>{error}</Err>

@@ -60,7 +60,7 @@ export function Journey() {
                   {String(i + 1).padStart(2, "0")}
                 </span>
               </span>
-              <div data-tl-card className="group flex-1 rounded-2xl border border-line bg-white p-5 transition-all duration-300 hover:-translate-y-1 hover:border-accent/40 hover:shadow-[0_22px_45px_-30px_rgba(43,124,255,0.6)] md:mt-6 md:w-full">
+              <div data-tl-card className="group flex-1 rounded-2xl border border-line bg-white p-5 transition-[box-shadow,border-color] duration-300 hover:border-accent/40 hover:shadow-[0_22px_45px_-30px_rgba(43,124,255,0.6)] md:mt-6 md:w-full">
                 <p data-year={m.year} className="text-[30px] leading-none font-extrabold tracking-tight text-accent tabular-nums">{m.year}</p>
                 <p className="mt-2 text-[14.5px] leading-relaxed text-mute">{m.text}</p>
               </div>

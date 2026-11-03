@@ -40,8 +40,13 @@ export function PageHero({ title, description, photo, children }: PageHeroProps)
             {children && <div data-ph className="mt-8">{children}</div>}
           </div>
           {photo && (
-            <div data-ph-photo className="relative aspect-[4/3] overflow-hidden rounded-3xl shadow-[0_40px_80px_-40px_rgba(28,31,48,0.5)]">
-              <Photo photo={photo} priority sizes="(max-width: 1024px) 100vw, 45vw" />
+            <div data-ph-photo className="group relative aspect-[4/3] overflow-hidden rounded-3xl shadow-[0_40px_80px_-40px_rgba(28,31,48,0.5)]">
+              <Photo
+                photo={photo}
+                priority
+                sizes="(max-width: 1024px) 100vw, 45vw"
+                className="scale-100 transition-transform duration-[1200ms] ease-[cubic-bezier(.16,1,.3,1)] group-hover:scale-110 motion-reduce:transition-none"
+              />
             </div>
           )}
         </div>

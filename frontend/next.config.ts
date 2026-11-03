@@ -16,6 +16,8 @@ const securityHeaders = [
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
+  // keep visited dashboard pages in the client router cache briefly → instant back-and-forth tab switching
+  experimental: { staleTimes: { dynamic: 30, static: 180 } },
   poweredByHeader: false,
   async headers() {
     return [{ source: "/(.*)", headers: securityHeaders }];

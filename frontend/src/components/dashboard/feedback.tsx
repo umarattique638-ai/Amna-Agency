@@ -2,12 +2,13 @@
 
 import { createContext, useCallback, useContext, useEffect, useRef, useState, type ReactNode } from "react";
 import { Btn } from "./controls";
-import { cn } from "@/lib/utils";
+import { toast as globalToast } from "@/lib/toast";
 
 /* ─────────────── Toasts ─────────────── */
-type Toast = { id: number; text: string; tone: "success" | "error" };
-const ToastCtx = createContext<(text: string, tone?: Toast["tone"]) => void>(() => {});
-export const useToast = () => useContext(ToastCtx);
+type ToastFn = (text: string, tone?: "success" | "error" | "info", description?: string) => void;
+const showToast: ToastFn = (text, tone = "success", description) => void globalToast[tone](text, description);
+/** Dashboard shortcut for the global top-center toast. */
+export const useToast = () => showToast;
 
 /* ─────────────── Confirm dialog ─────────────── */
 type ConfirmOpts = { title: string; text: string; confirmLabel?: string };
@@ -15,15 +16,8 @@ const ConfirmCtx = createContext<(o: ConfirmOpts) => Promise<boolean>>(async () 
 export const useConfirm = () => useContext(ConfirmCtx);
 
 export function FeedbackProvider({ children }: { children: ReactNode }) {
-  const [toasts, setToasts] = useState<Toast[]>([]);
   const [dialog, setDialog] = useState<(ConfirmOpts & { resolve: (v: boolean) => void }) | null>(null);
   const dialogRef = useRef<HTMLDialogElement>(null);
-
-  const toast = useCallback((text: string, tone: Toast["tone"] = "success") => {
-    const id = Date.now() + Math.random();
-    setToasts((t) => [...t, { id, text, tone }]);
-    setTimeout(() => setToasts((t) => t.filter((x) => x.id !== id)), 3500);
-  }, []);
 
   const confirm = useCallback((o: ConfirmOpts) => new Promise<boolean>((resolve) => setDialog({ ...o, resolve })), []);
 
@@ -38,24 +32,8 @@ export function FeedbackProvider({ children }: { children: ReactNode }) {
   };
 
   return (
-    <ToastCtx.Provider value={toast}>
-      <ConfirmCtx.Provider value={confirm}>
+    <ConfirmCtx.Provider value={confirm}>
         {children}
-
-        <div aria-live="polite" className="fixed right-4 bottom-4 z-[100] flex flex-col gap-2">
-          {toasts.map((t) => (
-            <div
-              key={t.id}
-              className={cn(
-                "animate-[toastIn_.3s_ease-out] rounded-xl px-4 py-3 text-sm font-medium text-white shadow-lg",
-                t.tone === "success" ? "bg-fg" : "bg-red-600",
-              )}
-            >
-              {t.tone === "success" ? "✓ " : "⚠ "}
-              {t.text}
-            </div>
-          ))}
-        </div>
 
         <dialog
           ref={dialogRef}
@@ -76,8 +54,6 @@ export function FeedbackProvider({ children }: { children: ReactNode }) {
             </div>
           )}
         </dialog>
-        <style>{`@keyframes toastIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}`}</style>
-      </ConfirmCtx.Provider>
-    </ToastCtx.Provider>
+    </ConfirmCtx.Provider>
   );
 }

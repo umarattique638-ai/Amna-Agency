@@ -1,5 +1,6 @@
 "use client";
 
+import { toast } from "@/lib/toast";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
@@ -24,12 +25,17 @@ export function VerifyEmail() {
       .unwrap()
       .then(() => {
         setState({ status: "ok" });
+        toast.success("Email verified!", "Taking you to your dashboard…");
         setTimeout(() => {
           router.replace("/dashboard");
           router.refresh();
         }, 1200);
       })
-      .catch((e) => setState({ status: "error", message: apiError(e).message }));
+      .catch((e) => {
+        const message = apiError(e).message;
+        setState({ status: "error", message });
+        toast.error("Verification failed", message);
+      });
   }, [token, verify, router]);
 
   return (

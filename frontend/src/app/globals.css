@@ -160,3 +160,13 @@
   from { transform: translateX(0); }
   to { transform: translateX(-50%); }
 }
+
+/* global toasts */
+@keyframes toastIn { from { opacity: 0; transform: translateY(-14px) scale(0.97); } to { opacity: 1; transform: none; } }
+@keyframes toastOut { to { opacity: 0; transform: translateY(-10px) scale(0.97); } }
+@keyframes toastBar { from { transform: scaleX(1); } to { transform: scaleX(0); } }
+@media (prefers-reduced-motion: reduce) {
+  [class*="toastIn"], [class*="toastOut"] { animation-duration: 1ms !important; }
+}
+
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }

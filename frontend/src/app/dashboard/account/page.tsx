@@ -40,6 +40,7 @@ export default function AccountPage() {
     setBusy(true);
     await logoutAllRequest().unwrap().catch(() => null);
     dispatch(loggedOut());
+    toast("Signed out on every device");
     router.replace("/login");
     router.refresh();
   };

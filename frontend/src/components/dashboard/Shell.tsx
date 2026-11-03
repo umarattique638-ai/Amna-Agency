@@ -1,5 +1,6 @@
 "use client";
 
+import { toast } from "@/lib/toast";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useState, type ReactNode } from "react";
@@ -9,6 +10,7 @@ import { useAppDispatch, useCurrentUser } from "@/store/hooks";
 import { loggedOut } from "@/store/authSlice";
 import { cn } from "@/lib/utils";
 import { FeedbackProvider } from "./feedback";
+import { PageSkeleton } from "./PageSkeleton";
 
 const nav = [
   { href: "/dashboard", label: "Overview", icon: "◧" },
@@ -33,12 +35,17 @@ export function DashboardShell({ children }: { children: ReactNode }) {
       await logoutRequest().unwrap();
     } finally {
       dispatch(loggedOut());
+      toast.success("Signed out", "Your session has been closed securely.");
       router.replace("/login");
       router.refresh();
     }
   };
 
-  const active = (href: string) => (href === "/dashboard" ? pathname === href : pathname.startsWith(href));
+  // Highlight the clicked tab immediately (before the route finishes loading).
+  const [pending, setPending] = useState<{ href: string; from: string } | null>(null);
+  const navigating = !!pending && pending.from === pathname;
+  const current = navigating ? pending.href : pathname;
+  const active = (href: string) => (href === "/dashboard" ? current === href : current.startsWith(href));
 
   const sidebar = (
     <div className="flex h-full flex-col">
@@ -48,7 +55,11 @@ export function DashboardShell({ children }: { children: ReactNode }) {
           <Link
             key={n.href}
             href={n.href}
-            onClick={() => setOpen(false)}
+            prefetch
+            onClick={() => {
+              setOpen(false);
+              if (!active(n.href)) setPending({ href: n.href, from: pathname });
+            }}
             aria-current={active(n.href) ? "page" : undefined}
             className={cn(
               "flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-colors",
@@ -91,7 +102,7 @@ export function DashboardShell({ children }: { children: ReactNode }) {
         )}
 
         <main className="px-4 py-8 md:px-8 lg:ml-64 lg:px-10 lg:py-10">
-          <div className="mx-auto max-w-6xl">{children}</div>
+          <div className="mx-auto max-w-6xl">{navigating ? <PageSkeleton /> : children}</div>
         </main>
       </div>
     </FeedbackProvider>

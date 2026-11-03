@@ -1,5 +1,6 @@
 "use client";
 
+import { toast } from "@/lib/toast";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useState, type FormEvent } from "react";
@@ -67,6 +68,7 @@ export function AuthForm({ mode }: { mode: Mode }) {
     if (!parsed.success) {
       const fe = z.flattenError(parsed.error).fieldErrors as Record<string, string[] | undefined>;
       setErrors(Object.fromEntries(Object.entries(fe).map(([k, v]) => [k, v?.[0]])));
+      toast.error("Please check the highlighted fields");
       return;
     }
     setErrors({});
@@ -74,16 +76,22 @@ export function AuthForm({ mode }: { mode: Mode }) {
       if (mode === "register") {
         const r = await register(parsed.data as z.infer<typeof registerSchema>).unwrap();
         setPending({ email: r.email, devUrl: r.devVerifyUrl });
+        toast.success("Account created", `We sent a verification link to ${r.email}.`);
         return;
       }
-      await login(parsed.data).unwrap();
+      const { user } = await login(parsed.data).unwrap();
+      toast.success(`Welcome back, ${user.name.split(" ")[0]}!`);
       router.replace(next);
       router.refresh();
     } catch (err) {
       const { message: msg, code, fields } = apiError(err);
-      if (code === "EMAIL_NOT_VERIFIED") return setPending({ email: parsed.data.email });
+      if (code === "EMAIL_NOT_VERIFIED") {
+        toast.info("Please verify your email first", "Check your inbox for the verification link.");
+        return setPending({ email: parsed.data.email });
+      }
       setErrors(fields);
       setMessage(msg);
+      toast.error(mode === "login" ? "Sign in failed" : "Sign up failed", msg);
     }
   }
 

@@ -1,5 +1,6 @@
 "use client";
 
+import { toast } from "@/lib/toast";
 import { useState, type FormEvent } from "react";
 import { z } from "zod";
 import {
@@ -41,6 +42,7 @@ export function ContactForm({ defaultEmail = "" }: { defaultEmail?: string }) {
     if (!parsed.success) {
       const flat = z.flattenError(parsed.error).fieldErrors as Record<string, string[] | undefined>;
       setErrors(Object.fromEntries(Object.entries(flat).map(([k, v]) => [k, v?.[0]])) as ContactErrors);
+      toast.error("Please check the form", "A few fields need your attention.");
       return;
     }
 
@@ -57,12 +59,14 @@ export function ContactForm({ defaultEmail = "" }: { defaultEmail?: string }) {
       if (!json) throw new Error("Our server is not reachable right now. Please email or WhatsApp us instead.");
       if (!res.ok || !json.success) throw new Error(json.error?.message ?? "Something went wrong");
       setStatus("success");
+      toast.success("Enquiry sent!", "Thank you — we'll reply within one business day.");
       setMessage("Thank you — we'll reply within one business day.");
       form.reset();
       setServices([]);
       setBudget([]);
     } catch (err) {
       setStatus("error");
+      toast.error("Couldn't send your enquiry", err instanceof Error ? err.message : undefined);
       setMessage(err instanceof Error ? err.message : "Something went wrong");
     }
   }

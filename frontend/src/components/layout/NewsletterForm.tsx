@@ -1,5 +1,6 @@
 "use client";
 
+import { toast } from "@/lib/toast";
 import { useState } from "react";
 
 /** Small newsletter sign-up (UI only — connect to Mailchimp/Brevo etc. in onSubmit). */
@@ -10,6 +11,7 @@ export function NewsletterForm() {
       onSubmit={(e) => {
         e.preventDefault();
         setSent(true);
+        toast.success("You're subscribed!", "Monthly marketing tips are on their way.");
       }}
       className="space-y-2"
     >

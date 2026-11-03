@@ -3,6 +3,7 @@
 import { useId, useRef, useState } from "react";
 import { apiError, useUploadImageMutation } from "@/store/api";
 import { cn } from "@/lib/utils";
+import { toast } from "@/lib/toast";
 import { Input } from "./controls";
 
 const TYPES = ["image/jpeg", "image/png", "image/webp", "image/gif", "image/avif"];
@@ -38,8 +39,11 @@ export function ImageUploader({ value, onChange, folder, alt, error, id }: Image
     try {
       const { image } = await upload({ file, folder }).unwrap();
       onChange(image.url);
+      toast.success("Image uploaded", "Don't forget to save your changes.");
     } catch (e) {
-      setLocalError(apiError(e).message);
+      const msg = apiError(e).message;
+      setLocalError(msg);
+      toast.error("Upload failed", msg);
     } finally {
       if (inputRef.current) inputRef.current.value = "";
     }

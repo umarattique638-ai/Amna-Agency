@@ -28,7 +28,7 @@ export function ServiceDetails({ services }: { services: ServiceItem[] }) {
 
               <Reveal stagger>
                 <p className="text-sm font-semibold text-accent">{pad(i + 1)} — Service</p>
-                <h2 id={`${s.slug}-title`} className="display mt-3 text-[clamp(2rem,3.6vw,3.2rem)]">{s.title}</h2>
+                <h2 id={`${s.slug}-title`} className="display mt-3 h2-display">{s.title}</h2>
                 <p className="mt-5 text-lg leading-relaxed text-mute">{s.description}</p>
                 {s.deliverables.length > 0 && (
                   <ul className="mt-8 grid gap-3 sm:grid-cols-2">

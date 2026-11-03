@@ -35,7 +35,7 @@ export function Markdown({ source, className }: { source: string; className?: st
       {nodes.map((n, i) => {
         switch (n.type) {
           case "h2":
-            return <h2 key={i} id={slugifyHeading(n.text)} className="mt-12 mb-4 scroll-mt-28 text-2xl font-bold tracking-tight text-fg md:text-3xl">{inline(n.text)}</h2>;
+            return <h2 key={i} id={slugifyHeading(n.text)} className="mt-12 mb-4 scroll-mt-28 text-[26px] leading-tight font-bold tracking-[-0.02em] text-fg md:text-[30px]">{inline(n.text)}</h2>;
           case "h3":
             return <h3 key={i} className="mt-8 mb-3 text-xl font-bold text-fg">{inline(n.text)}</h3>;
           case "quote":

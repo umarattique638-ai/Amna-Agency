@@ -106,7 +106,7 @@ export function Header() {
                       ))}
                       <div className="navy-gradient flex flex-col justify-between rounded-xl p-5 text-white">
                         <div>
-                          <p className="text-[17px] leading-snug font-black">Not sure what you need?</p>
+                          <p className="text-[17px] leading-snug font-bold">Not sure what you need?</p>
                           <p className="mt-2 text-[13px] text-white/70">Book a free 20-minute strategy call.</p>
                         </div>
                         <Link href="/contact" onClick={() => setMega(false)} className="mt-4 inline-flex items-center gap-1.5 text-[14px] font-bold text-[#9cc3ff] hover:text-white">

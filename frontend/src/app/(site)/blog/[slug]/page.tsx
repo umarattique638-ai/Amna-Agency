@@ -61,8 +61,8 @@ export default async function PostPage({ params }: Props) {
       <article className="bg-page pt-28 pb-20">
         <header className="container-x mt-12 max-w-4xl text-center">
           <span className="inline-flex rounded-full bg-accent-soft px-3.5 py-1.5 text-[11px] font-bold tracking-[0.08em] text-accent uppercase">{post.category}</span>
-          <h1 className="display mt-5 text-[clamp(2rem,4.2vw,3.4rem)]">{post.title}</h1>
-          <p className="mx-auto mt-6 max-w-2xl text-lg text-mute">{post.excerpt}</p>
+          <h1 className="display mt-5 h1-display">{post.title}</h1>
+          <p className="mx-auto mt-6 max-w-2xl text-[17px] leading-relaxed text-mute">{post.excerpt}</p>
           <div className="mt-8 flex flex-wrap items-center justify-center gap-4 text-sm text-mute">
             <span className="flex items-center gap-2.5">
               <span className="grid size-9 place-items-center rounded-full bg-accent text-sm font-bold text-white">{author.slice(0, 1)}</span>
@@ -82,7 +82,7 @@ export default async function PostPage({ params }: Props) {
         </div>
 
         <div className="container-x mt-14 grid max-w-6xl gap-12 lg:grid-cols-[1fr_260px]">
-          <div id="article-body" className="max-w-3xl text-lg leading-relaxed text-fg/80">
+          <div id="article-body" className="max-w-3xl text-[17px] leading-[1.75] text-fg/80">
             <Markdown source={post.content} />
 
             <div className="mt-14 flex flex-col justify-between gap-5 border-t border-line pt-8 sm:flex-row sm:items-center">

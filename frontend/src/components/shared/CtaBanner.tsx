@@ -20,8 +20,8 @@ export function CtaBanner({
           <span aria-hidden className="absolute -right-16 -bottom-28 size-80 rounded-full border-[50px] border-white/[0.06]" />
           <span aria-hidden className="absolute top-10 right-24 size-4 rounded-full bg-[#9cc3ff]/60" />
           <div className="relative mx-auto max-w-3xl">
-            <h2 className="display text-[clamp(2rem,4.4vw,3.4rem)]">{title}</h2>
-            <p className="mx-auto mt-5 max-w-2xl text-[16.5px] text-white/75">{text}</p>
+            <h2 className="display h2-display">{title}</h2>
+            <p className="mx-auto mt-5 max-w-2xl text-[17px] text-white/75">{text}</p>
             <div className="mt-9 flex flex-wrap justify-center gap-4">
               <ButtonLink href="/contact" variant="white" size="lg" arrow>Free Strategy Call</ButtonLink>
               <ButtonLink href="/services" variant="outline-light" size="lg">Explore Services</ButtonLink>

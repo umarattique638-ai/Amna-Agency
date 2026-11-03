@@ -24,7 +24,7 @@ export function ContactSection({ defaultEmail }: { defaultEmail?: string }) {
                     <LineIcon name={m.icon} className="size-[22px]" />
                   </span>
                   <span className="min-w-0 flex-1">
-                    <span className="block font-extrabold">{m.title}</span>
+                    <span className="block font-bold">{m.title}</span>
                     <span className="block text-[13px] text-mute">{m.text}</span>
                     <span className="mt-1 block truncate text-[14px] font-bold text-accent">{m.value}</span>
                   </span>
@@ -47,12 +47,12 @@ export function ContactSection({ defaultEmail }: { defaultEmail?: string }) {
 
           <Reveal className="relative flex-1 overflow-hidden rounded-[24px] bg-[linear-gradient(140deg,#020b2f_0%,#041f73_60%,#1b6fff_130%)] p-7 text-white">
             <span aria-hidden className="absolute -right-14 -bottom-16 size-48 rounded-full border-[30px] border-white/5" />
-            <p className="relative text-lg font-extrabold">What happens next?</p>
+            <p className="relative text-lg font-bold">What happens next?</p>
             <ol className="relative mt-6 space-y-0">
               {nextSteps.map((s, i) => (
                 <li key={s.title} className="relative flex gap-4 pb-6 last:pb-0">
                   {i < nextSteps.length - 1 && <span aria-hidden className="absolute top-9 bottom-1 left-[15px] w-px bg-white/20" />}
-                  <span className="relative grid size-8 shrink-0 place-items-center rounded-full bg-gradient-to-br from-[#1b6fff] to-[#3b89ff] text-sm font-extrabold blue-glow">{i + 1}</span>
+                  <span className="relative grid size-8 shrink-0 place-items-center rounded-full bg-gradient-to-br from-[#1b6fff] to-[#3b89ff] text-sm font-bold blue-glow">{i + 1}</span>
                   <span>
                     <span className="block font-bold">{s.title}</span>
                     <span className="mt-0.5 block text-[13.5px] leading-relaxed text-white/65">{s.text}</span>

@@ -15,7 +15,7 @@ export function BudgetSlider({ value, onChange, error }: { value: number; onChan
     <fieldset>
       <div className="flex items-end justify-between gap-4">
         <legend className="text-[12.5px] font-bold text-fg/80">Budget (USD) *</legend>
-        <output htmlFor={id} className="rounded-lg bg-white px-3 py-1.5 text-[19px] leading-none font-extrabold text-accent tabular-nums shadow-sm ring-1 ring-line">
+        <output htmlFor={id} className="rounded-lg bg-white px-3 py-1.5 text-[19px] leading-none font-bold text-accent tabular-nums shadow-sm ring-1 ring-line">
           {formatBudget(value)}
         </output>
       </div>

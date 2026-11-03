@@ -41,7 +41,7 @@ export function Hero() {
       <div aria-hidden className="dot-grid pointer-events-none absolute inset-y-0 right-0 w-1/2 opacity-50 [mask-image:radial-gradient(60%_60%_at_70%_40%,#000,transparent)]" />
       <div data-intro-hide className="container-x relative grid items-center gap-14 lg:grid-cols-[1.08fr_1fr]">
         <div>
-          <h1 className="display text-[clamp(2.7rem,6.2vw,5.4rem)] text-fg">
+          <h1 className="display h1-display text-fg">
             <span data-h className="block"><Hollow>Full</Hollow> <Red>Stack,</Red></span>
             <span data-h className="block">Web &amp; Marketing</span>
             <span data-h className="block text-accent">Agency.</span>
@@ -114,7 +114,7 @@ function HeroCard() {
           <div className="flex items-center gap-3">
             <LogoMark className="size-10" />
             <div className="leading-tight">
-              <p className="text-[15.5px] font-extrabold text-fg">{c.title}</p>
+              <p className="text-[15.5px] font-bold text-fg">{c.title}</p>
               <p className="text-[12.5px] text-mute">{c.sub}</p>
             </div>
           </div>
@@ -132,7 +132,7 @@ function HeroCard() {
             </span>
           </span>
           <div>
-            <p className="text-[18px] leading-tight font-extrabold text-fg">{c.highlight.title}</p>
+            <p className="text-[18px] leading-tight font-bold text-fg">{c.highlight.title}</p>
             <p className="mt-1 text-[13px] leading-relaxed text-mute">{c.highlight.text}</p>
           </div>
         </div>

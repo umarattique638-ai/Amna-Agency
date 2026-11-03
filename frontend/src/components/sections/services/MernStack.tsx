@@ -51,10 +51,10 @@ export function MernStack() {
         <Reveal as="ul" stagger className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {stack.map((item) => (
             <li key={item.letter} className="group relative overflow-hidden rounded-3xl border border-line bg-page p-7 transition-colors hover:border-accent/40">
-              <span aria-hidden className="pointer-events-none absolute -top-6 -right-2 text-[9rem] leading-none font-black tracking-tighter text-accent/10 transition-colors group-hover:text-accent/20">
+              <span aria-hidden className="pointer-events-none absolute -top-6 -right-2 text-[9rem] leading-none font-bold tracking-tighter text-accent/10 transition-colors group-hover:text-accent/20">
                 {item.letter}
               </span>
-              <span className="grid size-12 place-items-center rounded-2xl bg-accent text-xl font-black text-white">{item.letter}</span>
+              <span className="grid size-12 place-items-center rounded-2xl bg-accent text-xl font-bold text-white">{item.letter}</span>
               <h3 className="mt-6 text-2xl font-bold tracking-tight">{item.name}</h3>
               <p className="mt-1 text-xs font-semibold tracking-wide text-accent uppercase">{item.role}</p>
               <p className="mt-4 text-sm leading-relaxed text-mute">{item.description}</p>

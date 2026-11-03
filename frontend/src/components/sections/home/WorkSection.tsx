@@ -23,7 +23,7 @@ export function WorkSection() {
                 <div className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-4 p-7 text-white">
                   <div>
                     <p className="text-[13px] font-bold tracking-wide text-[#9cc3ff] uppercase">{p.result}</p>
-                    <h3 className="mt-1.5 text-[22px] leading-tight font-extrabold">
+                    <h3 className="mt-1.5 text-[22px] leading-tight font-bold">
                       <Link href="/contact" className="after:absolute after:inset-0">{p.title}</Link>
                     </h3>
                     <p className="mt-1 text-[14px] text-white/70">{p.client}</p>

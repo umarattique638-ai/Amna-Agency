@@ -43,7 +43,7 @@ export function StudioBanner() {
           <div className="flex items-center gap-2.5">
             <LogoMark className="size-9" />
             <div className="leading-tight">
-              <p className="text-[14.5px] font-extrabold">Axiom Studio</p>
+              <p className="text-[14.5px] font-bold">Axiom Studio</p>
               <p className="text-[11.5px] text-white/55">Build · Design · Grow · Film</p>
             </div>
           </div>
@@ -70,7 +70,7 @@ export function StudioBanner() {
                 <span key={c} data-sb-swatch className="h-7 flex-1 rounded-md ring-1 ring-white/20" style={{ background: c }} />
               ))}
             </div>
-            <p className="mt-2 text-[18px] leading-none font-extrabold" aria-hidden>Aa <span className="text-[11px] font-semibold text-white/50">Nunito Sans</span></p>
+            <p className="mt-2 text-[18px] leading-none font-bold" aria-hidden>Aa <span className="text-[11px] font-semibold text-white/50">Nunito Sans</span></p>
           </div>
           {/* marketing */}
           <div data-sb-tile className={tile}>

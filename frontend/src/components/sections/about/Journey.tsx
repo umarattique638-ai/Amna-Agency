@@ -56,12 +56,12 @@ export function Journey() {
             <li key={m.year} data-ms className="relative flex gap-5 md:flex-col md:items-center md:gap-0 md:text-center">
               <span data-node className="relative grid size-11 shrink-0 place-items-center">
                 <span data-node-pulse aria-hidden className="absolute inset-0 rounded-full bg-accent/30" />
-                <span className="relative grid size-11 place-items-center rounded-full bg-gradient-to-br from-[#1b6fff] to-[#3b89ff] text-[13px] font-extrabold text-white ring-[5px] ring-page blue-glow">
+                <span className="relative grid size-11 place-items-center rounded-full bg-gradient-to-br from-[#1b6fff] to-[#3b89ff] text-[13px] font-bold text-white ring-[5px] ring-page blue-glow">
                   {String(i + 1).padStart(2, "0")}
                 </span>
               </span>
               <div data-tl-card className="group flex-1 rounded-2xl border border-line bg-white p-5 transition-[box-shadow,border-color] duration-300 hover:border-accent/40 hover:shadow-[0_22px_45px_-30px_rgba(43,124,255,0.6)] md:mt-6 md:w-full">
-                <p data-year={m.year} className="text-[30px] leading-none font-extrabold tracking-tight text-accent tabular-nums">{m.year}</p>
+                <p data-year={m.year} className="text-[30px] leading-none font-bold tracking-tight text-accent tabular-nums">{m.year}</p>
                 <p className="mt-2 text-[14.5px] leading-relaxed text-mute">{m.text}</p>
               </div>
             </li>

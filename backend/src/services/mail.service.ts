@@ -15,7 +15,7 @@ function getTransporter() {
 }
 
 const layout = (title: string, body: string, cta: { label: string; url: string }) => `
-<!doctype html><html><body style="margin:0;background:#f7f8fa;font-family:Arial,sans-serif;color:#1c1f30">
+<!doctype html><html><body style="margin:0;background:#f7f8fa;font-family:'Nunito Sans',Segoe UI,Roboto,Arial,sans-serif;color:#1c1f30">
   <table width="100%" cellpadding="0" cellspacing="0"><tr><td align="center" style="padding:40px 16px">
     <table width="520" cellpadding="0" cellspacing="0" style="background:#fff;border-radius:16px;padding:36px;border:1px solid #eaebef">
       <tr><td style="font-size:22px;font-weight:800">Axiom<span style="color:#2b7cff">Digital</span></td></tr>

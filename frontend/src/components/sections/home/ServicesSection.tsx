@@ -17,7 +17,7 @@ export function ServicesSection({ services }: { services: ServiceItem[] }) {
                 <span className="grid size-14 place-items-center rounded-xl bg-accent-soft text-accent transition-colors group-hover:bg-accent group-hover:text-white">
                   <ServiceIcon slug={s.slug} className="size-7" />
                 </span>
-                <h3 className="mt-6 flex items-start justify-between gap-3 text-[19px] leading-snug font-extrabold">
+                <h3 className="mt-6 flex items-start justify-between gap-3 text-[19px] leading-snug font-bold">
                   <Link href={`/services#${s.slug}`} className="after:absolute after:inset-0">{s.title}</Link>
                   <span aria-hidden className="text-xl text-accent transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5">↗</span>
                 </h3>
@@ -30,7 +30,7 @@ export function ServicesSection({ services }: { services: ServiceItem[] }) {
         <div className="order-1 lg:order-2">
           <Reveal stagger className="lg:sticky lg:top-32">
             <Eyebrow>Our services</Eyebrow>
-            <h2 id="services-title" className="display mt-4 text-[clamp(2.3rem,4.4vw,3.7rem)]">
+            <h2 id="services-title" className="display mt-4 h2-display">
               From <Red>Concept</Red><br />to <Accent>Completion.</Accent>
             </h2>
             <div className="mt-6 grid gap-5 text-[15.5px] leading-relaxed text-mute sm:grid-cols-2">

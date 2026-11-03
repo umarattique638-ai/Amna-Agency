@@ -39,6 +39,9 @@
 
   body {
     font-family: var(--font-sans);
+    font-size: 17px;
+    line-height: 1.6;
+    color: var(--color-fg);
     background: var(--color-page);
     overflow-x: clip;
   }
@@ -70,9 +73,21 @@
 
 @utility display {
   font-family: var(--font-sans);
-  font-weight: 800;
-  line-height: 1.08;
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+/* One type scale for every page (matches the reference: h1 64/67 −2.24px · h2 42/48 −0.84px · 700) */
+@utility h1-display {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  line-height: 1.05;
   letter-spacing: -0.035em;
+}
+@utility h2-display {
+  font-size: clamp(2rem, 3.4vw, 2.625rem);
+  line-height: 1.14;
+  letter-spacing: -0.02em;
 }
 
 /* Kept for compatibility: highlighted word = solid blue */

@@ -39,7 +39,7 @@ export function AboutHero() {
       <div data-intro-hide className="container-x relative">
         <div className="mt-6 grid items-center gap-14 lg:grid-cols-[1.05fr_1fr]">
           <div>
-            <h1 data-a className="display text-[clamp(2.5rem,5vw,4.2rem)]">
+            <h1 data-a className="display h1-display">
               <span className="text-outline-red">Small</span> Team.<br />Serious <span className="text-accent">Results.</span>
             </h1>
             <p data-a className="mt-6 max-w-xl text-[17px] leading-relaxed text-mute">
@@ -60,7 +60,7 @@ export function AboutHero() {
                       <LineIcon name={c.icon} className="size-[18px]" />
                     </span>
                     <span className="min-w-0 leading-tight">
-                      <span className="block text-[13px] font-extrabold text-fg">{c.label}</span>
+                      <span className="block text-[13px] font-bold text-fg">{c.label}</span>
                       <span className="mt-0.5 block truncate text-[11.5px] text-mute">{c.sub}</span>
                     </span>
                   </span>
@@ -72,11 +72,11 @@ export function AboutHero() {
               <div className="flex items-center gap-3">
                 <span className="flex -space-x-3" aria-hidden>
                   {siteConfig.founders.map((f) => (
-                    <span key={f.name} className="grid size-11 place-items-center rounded-full bg-gradient-to-br from-[#041f73] to-[#2b7cff] font-extrabold text-white ring-[3px] ring-white">{f.initials}</span>
+                    <span key={f.name} className="grid size-11 place-items-center rounded-full bg-gradient-to-br from-[#041f73] to-[#2b7cff] font-bold text-white ring-[3px] ring-white">{f.initials}</span>
                   ))}
                 </span>
                 <p className="text-[13.5px] leading-snug">
-                  <span className="block font-extrabold text-fg">{siteConfig.founders.map((f) => f.name).join(" & ")}</span>
+                  <span className="block font-bold text-fg">{siteConfig.founders.map((f) => f.name).join(" & ")}</span>
                   <span className="block text-mute">Founders &amp; owners</span>
                 </p>
               </div>
@@ -94,7 +94,7 @@ export function AboutHero() {
               {aboutHero.stats.map((s) => (
                 <div key={s.label} className="flex flex-col-reverse items-center px-2 text-center">
                   <dt className="text-[11px] text-mute">{s.label}</dt>
-                  <dd className="text-xl font-extrabold text-accent md:text-2xl">{s.value}</dd>
+                  <dd className="text-xl font-bold text-accent md:text-2xl">{s.value}</dd>
                 </div>
               ))}
             </dl>

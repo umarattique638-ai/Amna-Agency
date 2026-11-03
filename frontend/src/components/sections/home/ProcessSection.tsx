@@ -50,9 +50,9 @@ export function ProcessSection() {
                 <span className="relative grid size-full place-items-center rounded-full bg-gradient-to-br from-[#1b6fff] to-[#3b89ff] text-white ring-[6px] ring-surface blue-glow transition-transform duration-300 group-hover:scale-110">
                   <LineIcon name={s.icon} className="size-7" />
                 </span>
-                <span className="absolute -top-1 -right-2 grid size-7 place-items-center rounded-full bg-white text-[11px] font-extrabold text-accent shadow-md ring-1 ring-line">{s.n}</span>
+                <span className="absolute -top-1 -right-2 grid size-7 place-items-center rounded-full bg-white text-[11px] font-bold text-accent shadow-md ring-1 ring-line">{s.n}</span>
               </div>
-              <h3 data-text className="mt-6 text-[19px] font-extrabold">{s.title}</h3>
+              <h3 data-text className="mt-6 text-[19px] font-bold">{s.title}</h3>
               <p data-text className="mx-auto mt-2 max-w-[16rem] text-[14.5px] leading-relaxed text-mute">{s.text}</p>
             </li>
           ))}

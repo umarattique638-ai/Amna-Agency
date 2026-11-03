@@ -12,7 +12,7 @@ export function StatsSection() {
           {stats.map((s) => (
             <div key={s.label} className="flex flex-col-reverse items-center p-8 text-center">
               <dt className="mt-2 text-[14.5px] font-semibold text-mute">{s.label}</dt>
-              <dd className="text-[clamp(2.6rem,5vw,4rem)] leading-none font-black text-fg">
+              <dd className="text-[clamp(2.6rem,5vw,4rem)] leading-none font-bold text-fg">
                 <Counter value={s.value} prefix={s.prefix} suffix={s.suffix} />
               </dd>
             </div>

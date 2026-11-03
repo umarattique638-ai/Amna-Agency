@@ -82,7 +82,7 @@ export function StackSection() {
                   </span>
                   </span>
                   <span className="leading-tight">
-                    <span className="block text-[17px] font-extrabold text-fg">{t.name}</span>
+                    <span className="block text-[17px] font-bold text-fg">{t.name}</span>
                     <span className="block text-[13px] text-mute">{t.role}</span>
                   </span>
                 </div>

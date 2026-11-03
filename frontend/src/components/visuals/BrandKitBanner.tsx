@@ -39,7 +39,7 @@ export function BrandKitBanner() {
       <div aria-hidden className="absolute inset-8 rounded-[2rem] bg-accent/20 blur-3xl" />
       <div data-bk-board className="relative overflow-hidden rounded-3xl border border-line bg-white p-6 shadow-[0_40px_80px_-45px_rgba(4,31,115,0.6)]">
         <div className="flex items-center justify-between">
-          <p className="text-[13px] font-extrabold tracking-wide text-fg uppercase">Brand kit</p>
+          <p className="text-[13px] font-bold tracking-wide text-fg uppercase">Brand kit</p>
           <span className="rounded-full bg-accent-soft px-2.5 py-1 text-[11px] font-bold text-accent">v1.0</span>
         </div>
 
@@ -47,7 +47,7 @@ export function BrandKitBanner() {
         <div className="navy-gradient mt-4 flex items-center gap-4 rounded-2xl p-5 text-white">
           <span data-bk-logo className="inline-block"><LogoMark className="size-14" /></span>
           <div>
-            <p className="text-[20px] leading-none font-extrabold">Your Brand</p>
+            <p className="text-[20px] leading-none font-bold">Your Brand</p>
             <p className="mt-1.5 text-[12px] text-white/60">Primary logo · icon · dark &amp; light</p>
           </div>
         </div>
@@ -68,7 +68,7 @@ export function BrandKitBanner() {
         {/* type + templates */}
         <div className="mt-4 grid grid-cols-[1fr_1.3fr] gap-3">
           <div className="rounded-2xl bg-surface p-4">
-            <p className="text-[40px] leading-none font-extrabold text-fg">Aa</p>
+            <p className="text-[40px] leading-none font-bold text-fg">Aa</p>
             <p className="mt-2 text-[11.5px] font-bold text-fg">Nunito Sans</p>
             <p className="text-[10.5px] text-mute">Headings · Body</p>
           </div>

@@ -19,7 +19,7 @@ function CheckInbox({ email, devUrl }: { email: string; devUrl?: string }) {
   return (
     <div className="text-center">
       <span className="mx-auto grid size-16 place-items-center rounded-full bg-accent-soft text-3xl">✉</span>
-      <h1 className="mt-6 text-2xl font-extrabold tracking-tight">Check your inbox</h1>
+      <h1 className="mt-6 text-2xl font-bold tracking-tight">Check your inbox</h1>
       <p className="mt-2 text-mute">
         We sent a verification link to <b className="text-fg">{email}</b>. Click it to activate your account — the link expires in 24 hours.
       </p>
@@ -100,7 +100,7 @@ export function AuthForm({ mode }: { mode: Mode }) {
   return (
     <form onSubmit={onSubmit} noValidate className="space-y-5">
       <div>
-        <h1 className="text-3xl font-extrabold tracking-tight">{mode === "login" ? "Welcome back" : "Create your account"}</h1>
+        <h1 className="text-3xl font-bold tracking-tight">{mode === "login" ? "Welcome back" : "Create your account"}</h1>
         <p className="mt-2 text-mute">
           {mode === "login" ? "Sign in to manage your website content." : "We'll email you a link to verify your address."}
         </p>

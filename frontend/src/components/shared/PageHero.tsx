@@ -35,7 +35,7 @@ export function PageHero({ title, description, photo, children }: PageHeroProps)
       <div data-intro-hide className="container-x relative">
         <div className={photo ? "mt-6 grid items-center gap-12 lg:grid-cols-[1.1fr_1fr]" : "mx-auto mt-8 max-w-3xl text-center"}>
           <div>
-            <h1 data-ph className="display text-[clamp(2.3rem,4.6vw,3.8rem)]">{title}</h1>
+            <h1 data-ph className="display h1-display">{title}</h1>
             <p data-ph className={`mt-5 text-[17px] leading-relaxed text-mute ${photo ? "max-w-xl" : "mx-auto max-w-2xl"}`}>{description}</p>
             {children && <div data-ph className="mt-8">{children}</div>}
           </div>

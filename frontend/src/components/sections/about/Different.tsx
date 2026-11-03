@@ -55,9 +55,9 @@ export function Different() {
                   <span data-dc-num className="grid size-11 place-items-center rounded-xl bg-accent-soft text-accent group-hover:bg-accent group-hover:text-white">
                     <LineIcon name={icons[i] ?? "check"} />
                   </span>
-                  <span className="text-[28px] leading-none font-extrabold text-fg/10">0{i + 1}</span>
+                  <span className="text-[28px] leading-none font-bold text-fg/10">0{i + 1}</span>
                 </div>
-                <h3 className="mt-5 text-[17px] font-extrabold">{d.title}</h3>
+                <h3 className="mt-5 text-[17px] font-bold">{d.title}</h3>
                 <p className="mt-1.5 text-[14px] leading-relaxed text-mute">{d.text}</p>
               </article>
               </div>
@@ -67,7 +67,7 @@ export function Different() {
               <span data-dc-num className="relative grid size-11 place-items-center rounded-xl bg-white/10 text-[#9cc3ff] ring-1 ring-white/20">
                 <LineIcon name="bolt" />
               </span>
-              <h3 className="relative mt-5 text-[17px] font-extrabold">Why “Axiom”?</h3>
+              <h3 className="relative mt-5 text-[17px] font-bold">Why “Axiom”?</h3>
               <p className="relative mt-1.5 text-[14px] leading-relaxed text-white/70">{aboutPage.nameStory}</p>
             </article>
           </div>

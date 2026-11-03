@@ -18,10 +18,10 @@ export function SectionHeading({ eyebrow, title, subtitle, description, align = 
   return (
     <Reveal stagger className={cn("max-w-3xl", align === "center" && "mx-auto text-center", className)}>
       <Eyebrow inverted={inverted} className={align === "center" ? "justify-center" : undefined}>{eyebrow}</Eyebrow>
-      <H className={cn("display mt-4 text-[clamp(2.2rem,4.4vw,3.6rem)]", inverted ? "text-white" : "text-fg")}>{title}</H>
+      <H className={cn("display mt-4 h2-display", inverted ? "text-white" : "text-fg")}>{title}</H>
       {subtitle && <p className={cn("mt-3 text-lg font-bold", inverted ? "text-white" : "text-fg")}>{subtitle}</p>}
       {description && (
-        <p className={cn("mt-5 max-w-2xl text-[16px] leading-relaxed", inverted ? "text-white/75" : "text-mute", align === "center" && "mx-auto")}>{description}</p>
+        <p className={cn("mt-5 max-w-2xl text-[17px] leading-relaxed", inverted ? "text-white/75" : "text-mute", align === "center" && "mx-auto")}>{description}</p>
       )}
     </Reveal>
   );

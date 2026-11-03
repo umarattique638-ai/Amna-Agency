@@ -35,20 +35,20 @@ export function Founders() {
         {/* intro + note */}
         <div data-f-intro>
           <Eyebrow>Meet the founders</Eyebrow>
-          <h2 className="display mt-4 text-[clamp(2.2rem,4.2vw,3.5rem)]">
+          <h2 className="display mt-4 h2-display">
             The People <Accent>Behind Axiom.</Accent>
           </h2>
-          <p className="mt-5 max-w-lg text-[16px] leading-relaxed text-mute">
+          <p className="mt-5 max-w-lg text-[17px] leading-relaxed text-mute">
             {siteConfig.legalName} is owned and run by <b className="text-fg">{names}</b>. You work with them directly — not with an account manager who passes messages along.
           </p>
 
           <figure className="relative mt-9 rounded-3xl bg-[linear-gradient(140deg,#020b2f_0%,#041f73_65%,#1b6fff_140%)] p-7 text-white shadow-[0_30px_60px_-35px_rgba(4,31,115,0.8)] md:p-8">
             <span aria-hidden className="absolute -top-5 left-7 grid size-11 place-items-center rounded-xl bg-gradient-to-br from-[#1b6fff] to-[#3b89ff] font-serif text-3xl leading-none blue-glow">“</span>
-            <blockquote className="text-[16.5px] leading-relaxed font-medium text-white/90">{aboutPage.founderQuote}</blockquote>
+            <blockquote className="text-[17px] leading-relaxed font-medium text-white/90">{aboutPage.founderQuote}</blockquote>
             <figcaption className="mt-6 flex items-center gap-3">
               <span className="flex -space-x-2.5" aria-hidden>
                 {siteConfig.founders.map((f) => (
-                  <span key={f.name} className="grid size-9 place-items-center rounded-full bg-white text-sm font-extrabold text-navy ring-2 ring-[#041f73]">{f.initials}</span>
+                  <span key={f.name} className="grid size-9 place-items-center rounded-full bg-white text-sm font-bold text-navy ring-2 ring-[#041f73]">{f.initials}</span>
                 ))}
               </span>
               <span className="text-[14px] leading-tight">
@@ -71,11 +71,11 @@ export function Founders() {
                 <div className="relative px-6 pb-7">
                   <div data-f-avatar className="relative -mt-12 size-24">
                     <span data-f-orbit aria-hidden className="absolute -inset-1.5 rounded-[1.6rem] border-2 border-dashed border-accent/40" />
-                    <span className="relative grid size-24 place-items-center rounded-[1.4rem] bg-gradient-to-br from-[#1b6fff] to-[#3b89ff] text-4xl font-extrabold text-white ring-4 ring-white blue-glow">
+                    <span className="relative grid size-24 place-items-center rounded-[1.4rem] bg-gradient-to-br from-[#1b6fff] to-[#3b89ff] text-4xl font-bold text-white ring-4 ring-white blue-glow">
                       {f.initials}
                     </span>
                   </div>
-                  <h3 className="mt-5 text-[24px] font-extrabold tracking-tight">{f.name}</h3>
+                  <h3 className="mt-5 text-[24px] font-bold tracking-tight">{f.name}</h3>
                   <p className="mt-1 inline-flex rounded-full bg-accent-soft px-3 py-1 text-[12px] font-bold text-accent">{f.role}</p>
                   <p className="mt-4 text-[14.5px] leading-relaxed text-mute">{f.bio}</p>
                   <ul className="mt-5 flex flex-wrap gap-1.5">

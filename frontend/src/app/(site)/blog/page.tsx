@@ -15,7 +15,7 @@ export default async function BlogPage() {
     <>
       <section className="hero-wash">
         <header className="container-x max-w-2xl pt-32 pb-10 text-center md:pt-36">
-          <h1 className="display text-[clamp(2rem,4vw,2.9rem)]">
+          <h1 className="display h1-display">
             <span className="text-outline-red">Digital</span> Growth, <span className="text-accent">Explained.</span>
           </h1>
           <p className="mt-4 text-[15px] leading-relaxed text-mute">

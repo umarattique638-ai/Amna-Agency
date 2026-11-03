@@ -40,10 +40,10 @@ export function WhyChoose() {
         <div>
           <div data-wc-intro>
             <Eyebrow>Why choose us</Eyebrow>
-            <h2 id="why-title" className="display mt-4 text-[clamp(2.2rem,4.2vw,3.5rem)]">
+            <h2 id="why-title" className="display mt-4 h2-display">
               Why Businesses <Red>Trust</Red> <Accent>Our Team.</Accent>
             </h2>
-            <p className="mt-5 max-w-lg text-[16px] leading-relaxed text-mute">
+            <p className="mt-5 max-w-lg text-[17px] leading-relaxed text-mute">
               No juggling three agencies. One accountable team builds your product and markets it — with clean code, honest reporting and quick replies.
             </p>
           </div>
@@ -52,7 +52,7 @@ export function WhyChoose() {
               <li key={f.title} data-wc-feat className="group flex gap-4">
                 <span aria-hidden className="grid size-12 shrink-0 place-items-center rounded-full bg-gradient-to-br from-[#1b6fff] to-[#3b89ff] text-lg font-bold text-white blue-glow transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6"><LineIcon name={f.icon} className="size-[22px]" /></span>
                 <span>
-                  <span className="block text-[17px] font-extrabold">{f.title}</span>
+                  <span className="block text-[17px] font-bold">{f.title}</span>
                   <span className="mt-1 block text-[14.5px] text-mute">{f.text}</span>
                 </span>
               </li>
@@ -74,9 +74,9 @@ export function WhyChoose() {
                 <span data-wc-glow aria-hidden className="pointer-events-none absolute inset-0 bg-gradient-to-b from-accent-soft to-transparent opacity-0" />
                 <span aria-hidden className="absolute inset-y-0 left-0 w-1 origin-top scale-y-0 bg-accent transition-transform duration-500 group-hover:scale-y-100" />
                 <div className="relative flex items-start gap-6">
-                  <span data-wc-num className="text-[44px] leading-none font-extrabold text-accent tabular-nums">{c.n}</span>
+                  <span data-wc-num className="text-[44px] leading-none font-bold text-accent tabular-nums">{c.n}</span>
                   <span>
-                    <span className="block text-[19px] font-extrabold">{c.title}</span>
+                    <span className="block text-[19px] font-bold">{c.title}</span>
                     <span className="mt-2 block text-[14.5px] leading-relaxed text-mute">{c.text}</span>
                   </span>
                 </div>

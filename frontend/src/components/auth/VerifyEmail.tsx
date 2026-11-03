@@ -43,7 +43,7 @@ export function VerifyEmail() {
       <span className="mx-auto grid size-16 place-items-center rounded-full bg-accent-soft text-3xl">
         {state.status === "loading" ? <span className="size-6 animate-spin rounded-full border-2 border-accent border-t-transparent" /> : state.status === "ok" ? "✓" : "!"}
       </span>
-      <h1 className="mt-6 text-2xl font-extrabold tracking-tight">
+      <h1 className="mt-6 text-2xl font-bold tracking-tight">
         {state.status === "loading" ? "Verifying your email…" : state.status === "ok" ? "Email verified!" : "We couldn't verify that link"}
       </h1>
       <p className="mt-2 text-mute">

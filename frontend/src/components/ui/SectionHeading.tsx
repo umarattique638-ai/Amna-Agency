@@ -12,7 +12,7 @@ interface SectionHeadingProps {
   as?: "h1" | "h2";
 }
 
-/** ✱ EYEBROW → heavy headline mixing solid, outlined-red and blue words → intro. */
+/** EYEBROW → heavy headline mixing solid, outlined-red and blue words → intro. */
 export function SectionHeading({ eyebrow, title, subtitle, description, align = "center", className, inverted, as = "h2" }: SectionHeadingProps) {
   const H = as;
   return (
@@ -27,11 +27,10 @@ export function SectionHeading({ eyebrow, title, subtitle, description, align = 
   );
 }
 
-/** ✱ LABEL — small uppercase blue label with an asterisk glyph. */
+/** LABEL — small uppercase blue label. */
 export function Eyebrow({ children, inverted, className }: { children: React.ReactNode; inverted?: boolean; className?: string }) {
   return (
     <p className={cn("flex items-center gap-2 text-[15px] font-bold tracking-[0.04em] uppercase", inverted ? "text-white" : "text-accent", className)}>
-      <span aria-hidden className="text-[18px] leading-none">✱</span>
       {children}
     </p>
   );

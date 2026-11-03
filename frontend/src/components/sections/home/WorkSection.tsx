@@ -7,7 +7,7 @@ import { Accent, Red, SectionHeading } from "@/components/ui/SectionHeading";
 
 export function WorkSection() {
   return (
-    <section aria-label="Our work" className="bg-page py-24 lg:py-28">
+    <section aria-label="Our work" className="bg-surface py-24 lg:py-28">
       <div className="container-x">
         <SectionHeading
           eyebrow="Our portfolio"

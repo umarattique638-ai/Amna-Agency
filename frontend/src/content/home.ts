@@ -45,16 +45,6 @@ export const stackTiles = [
   { name: "Redux", role: "App state", icon: "redux", color: "#764abc" },
 ] as const;
 
-export const about = {
-  photo: photos.teamPresenting,
-  values: [
-    { icon: "</>", title: "Clean, scalable code", text: "Typed, tested and documented — easy to grow later." },
-    { icon: "⚡", title: "Speed & SEO first", text: "Core Web Vitals and on-page SEO baked in from day one." },
-    { icon: "✎", title: "Design that converts", text: "Every screen, post and video is made to win customers." },
-    { icon: "↗", title: "Growth after launch", text: "Marketing, content and ads that bring real traffic." },
-  ],
-};
-
 export const stats: Stat[] = [
   { value: 140, suffix: "+", label: "Websites & apps launched" },
   { value: 85, suffix: "+", label: "Brands marketed" },

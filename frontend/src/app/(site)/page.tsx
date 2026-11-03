@@ -2,7 +2,6 @@ import { Hero } from "@/components/sections/home/Hero";
 import { TechStrip } from "@/components/sections/home/TechStrip";
 import { ServicesSection } from "@/components/sections/home/ServicesSection";
 import { StackSection } from "@/components/sections/home/StackSection";
-import { AboutSection } from "@/components/sections/home/AboutSection";
 import { StatsSection } from "@/components/sections/home/StatsSection";
 import { WhyChoose } from "@/components/sections/home/WhyChoose";
 import { WorkSection } from "@/components/sections/home/WorkSection";
@@ -21,7 +20,6 @@ export default async function HomePage() {
       <TechStrip />
       <ServicesSection services={services} />
       <StackSection />
-      <AboutSection />
       <StatsSection />
       <WhyChoose />
       <WorkSection />

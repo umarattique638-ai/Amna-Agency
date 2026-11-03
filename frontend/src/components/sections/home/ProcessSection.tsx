@@ -34,7 +34,7 @@ export function ProcessSection() {
   );
 
   return (
-    <section ref={root} aria-label="How we work" className="bg-surface py-24">
+    <section ref={root} aria-label="How we work" className="bg-page py-24">
       <div className="container-x">
         <SectionHeading eyebrow="How we work" title={<>A Simple, <Accent>Proven Process.</Accent></>} />
         <ol data-steps className="relative mt-16 grid gap-12 md:grid-cols-2 md:gap-6 lg:grid-cols-4">
@@ -47,7 +47,7 @@ export function ProcessSection() {
               <div data-dot className="relative mx-auto size-[72px]">
                 <span data-ring aria-hidden className="absolute inset-0 rounded-full border-2 border-accent/50" />
                 <span data-pulse aria-hidden className="absolute inset-0 rounded-full bg-accent/25" />
-                <span className="relative grid size-full place-items-center rounded-full bg-gradient-to-br from-[#1b6fff] to-[#3b89ff] text-white ring-[6px] ring-surface blue-glow transition-transform duration-300 group-hover:scale-110">
+                <span className="relative grid size-full place-items-center rounded-full bg-gradient-to-br from-[#1b6fff] to-[#3b89ff] text-white ring-[6px] ring-page blue-glow transition-transform duration-300 group-hover:scale-110">
                   <LineIcon name={s.icon} className="size-7" />
                 </span>
                 <span className="absolute -top-1 -right-2 grid size-7 place-items-center rounded-full bg-white text-[11px] font-bold text-accent shadow-md ring-1 ring-line">{s.n}</span>

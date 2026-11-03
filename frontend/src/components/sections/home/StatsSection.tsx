@@ -5,7 +5,7 @@ import { Accent, SectionHeading } from "@/components/ui/SectionHeading";
 
 export function StatsSection() {
   return (
-    <section aria-label="Results" className="bg-page py-24">
+    <section aria-label="Results" className="bg-surface py-24">
       <div className="container-x">
         <SectionHeading eyebrow="Our results" title={<>Our Clients Get <Accent>Digital Results.</Accent></>} />
         <Reveal as="dl" stagger className="mt-14 grid grid-cols-2 divide-line rounded-3xl border border-line bg-white lg:grid-cols-4 lg:divide-x">

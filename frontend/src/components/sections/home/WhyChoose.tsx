@@ -35,7 +35,7 @@ export function WhyChoose() {
   );
 
   return (
-    <section ref={root} aria-labelledby="why-title" className="bg-surface py-24 lg:py-28">
+    <section ref={root} aria-labelledby="why-title" className="bg-page py-24 lg:py-28">
       <div className="container-x grid gap-14 lg:grid-cols-2 lg:gap-20">
         <div>
           <div data-wc-intro>
@@ -67,7 +67,7 @@ export function WhyChoose() {
           </span>
           {whyChoose.cards.map((c) => (
             <li key={c.n} data-wc-card className="group relative">
-              <span data-wc-node aria-hidden className="absolute top-1/2 -left-8 grid size-[25px] -translate-y-1/2 place-items-center rounded-full bg-white ring-4 ring-surface">
+              <span data-wc-node aria-hidden className="absolute top-1/2 -left-8 grid size-[25px] -translate-y-1/2 place-items-center rounded-full bg-white ring-4 ring-page">
                 <span className="size-3 rounded-full bg-accent" />
               </span>
               <div className="relative overflow-hidden rounded-2xl border border-line bg-white p-7 transition-all duration-300 group-hover:translate-x-1 group-hover:border-accent/40 group-hover:shadow-[0_25px_50px_-30px_rgba(43,124,255,0.55)]">

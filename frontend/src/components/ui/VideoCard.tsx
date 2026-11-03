@@ -2,22 +2,10 @@
 
 import { useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
-
-interface Clip {
-  src: string;
-  poster: string;
-  title: string;
-  meta: string;
-  ratio: string;
-}
-
-const clips: Clip[] = [
-  { src: "/videos/axiom-promo.mp4", poster: "/videos/axiom-promo.jpg", title: "Brand promo film", meta: "16:9 · YouTube & website", ratio: "aspect-video" },
-  { src: "/videos/axiom-reel.mp4", poster: "/videos/axiom-reel.jpg", title: "Social media reel", meta: "4:5 · Instagram & Facebook", ratio: "aspect-[4/5]" },
-];
+import type { Clip } from "@/content/videos";
 
 /** Muted preview plays while on screen; click to watch with sound. */
-function VideoCard({ clip, className }: { clip: Clip; className?: string }) {
+export function VideoCard({ clip, className, caption = true }: { clip: Clip; className?: string; caption?: boolean }) {
   const ref = useRef<HTMLVideoElement>(null);
   const [active, setActive] = useState(false);
 
@@ -69,32 +57,12 @@ function VideoCard({ clip, className }: { clip: Clip; className?: string }) {
           </button>
         )}
       </div>
+      {caption && (
       <figcaption className="mt-4 flex items-center justify-between gap-3">
         <span className="text-[17px] font-bold text-fg">{clip.title}</span>
         <span className="rounded-full bg-accent-soft px-3 py-1 text-[12.5px] font-bold text-accent">{clip.meta}</span>
       </figcaption>
+      )}
     </figure>
-  );
-}
-
-/** "Our recent edits" — sits under the Video Editing service. */
-export function VideoShowcase() {
-  return (
-    <div className="container-x">
-      <div className="rounded-[32px] border border-line bg-white p-6 md:p-10">
-        <div className="flex flex-wrap items-end justify-between gap-4">
-          <div>
-            <p className="text-sm font-bold tracking-wider text-accent uppercase">Our recent edits</p>
-            <h3 className="display mt-2 text-[clamp(1.6rem,2.6vw,2.25rem)]">Made in-house, for every platform.</h3>
-          </div>
-          <p className="max-w-md text-[15.5px] text-mute">Tap a video to watch it with sound. Same story, cut for widescreen and for the social feed.</p>
-        </div>
-        <div className="mt-8 grid items-start gap-8 lg:grid-cols-[1.9fr_1fr]">
-          {clips.map((c) => (
-            <VideoCard key={c.src} clip={c} className={c.ratio.includes("4/5") ? "mx-auto w-full max-w-[420px] lg:max-w-none" : undefined} />
-          ))}
-        </div>
-      </div>
-    </div>
   );
 }

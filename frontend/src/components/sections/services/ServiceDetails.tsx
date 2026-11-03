@@ -3,7 +3,8 @@ import { Reveal } from "@/components/ui/Reveal";
 import { ButtonLink } from "@/components/ui/Button";
 import { cn, pad } from "@/lib/utils";
 import type { ServiceItem } from "@/types";
-import { VideoShowcase } from "./VideoShowcase";
+import { VideoCard } from "@/components/ui/VideoCard";
+import { promoVideo } from "@/content/videos";
 
 /** One row per service (from the database), alternating photo side. */
 export function ServiceDetails({ services }: { services: ServiceItem[] }) {
@@ -16,6 +17,9 @@ export function ServiceDetails({ services }: { services: ServiceItem[] }) {
             <div className="container-x grid items-center gap-12 lg:grid-cols-2 lg:gap-20">
               <Reveal className={cn("relative", flip && "lg:order-2")}>
                 <div aria-hidden className={cn("absolute -inset-4 rounded-[36px] bg-gradient-to-br from-accent/20 to-[#9cc3ff]/10 blur-2xl", flip ? "-rotate-2" : "rotate-2")} />
+                {s.slug === "video-editing" ? (
+                  <VideoCard clip={promoVideo} caption={false} className="relative" />
+                ) : (
                 <div className="group relative aspect-[4/3] overflow-hidden rounded-[28px] shadow-[0_40px_80px_-40px_rgba(6,13,31,0.5)] transition-shadow duration-700 hover:shadow-[0_50px_90px_-40px_rgba(43,124,255,0.55)]">
                   <Photo
                     photo={{ src: s.image, alt: s.imageAlt || s.title }}
@@ -30,6 +34,7 @@ export function ServiceDetails({ services }: { services: ServiceItem[] }) {
                     </div>
                   )}
                 </div>
+                )}
               </Reveal>
 
               <Reveal stagger>
@@ -51,7 +56,6 @@ export function ServiceDetails({ services }: { services: ServiceItem[] }) {
                 </div>
               </Reveal>
             </div>
-            {s.slug === "video-editing" && <div className="mt-16"><VideoShowcase /></div>}
           </section>
         );
       })}

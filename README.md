@@ -72,3 +72,14 @@ src/
 3. Restart `npm run dev`. `http://localhost:5000/api/health` should show `"uploads":"cloudinary"`.
 
 Dashboard → Blog post / Service editor → drag & drop or click the image box. Flow: browser → Next `/api` proxy → Express `POST /api/uploads/image` (login required, admin/editor, JPG/PNG/WEBP/GIF/AVIF, max 5 MB, magic-byte check, rate-limited) → Cloudinary folder `axiom_agency/posts|services`. Only the returned `https://res.cloudinary.com/...` URL is stored in MongoDB. Public pages serve it through Cloudinary's CDN with automatic format/quality/width (`lib/unsplash.ts → cloudinaryLoader`).
+
+## Deploying to Vercel (two projects from this one repo)
+| Vercel project | Root Directory | Framework |
+|---|---|---|
+| **API** (e.g. `axiom-digital-api`) | `backend` | Other (uses `backend/vercel.json`) |
+| **Website** (e.g. `axiom-digital-studio`) | `frontend` | Next.js |
+
+**API env vars:** `MONGO_URL`, `MONGO_DB_NAME`, `JWT_ACCESS_SECRET`, `JWT_REFRESH_SECRET`, `CLOUDINARY_CLOUD_NAME`, `CLOUDINARY_API_KEY`, `CLOUDINARY_API_SECRET`, `REVALIDATE_SECRET`, `CLIENT_URL=https://<website>.vercel.app`, `FRONTEND_REVALIDATE_URL=https://<website>.vercel.app/revalidate` (+ SMTP_* for real emails).
+**Website env vars:** `BACKEND_URL=https://<api>.vercel.app`, `NEXT_PUBLIC_SITE_URL=https://<website>.vercel.app`, `REVALIDATE_SECRET` (same value as API).
+**MongoDB Atlas → Network Access:** add `0.0.0.0/0` (Vercel has no fixed IPs).
+Note: rate limits are in-memory, so on serverless they apply per instance.

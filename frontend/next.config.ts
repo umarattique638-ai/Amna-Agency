@@ -1,6 +1,11 @@
 import type { NextConfig } from "next";
 
-const BACKEND_URL = process.env.BACKEND_URL ?? "http://localhost:5000";
+const BACKEND_URL = (process.env.BACKEND_URL ?? "http://localhost:5000").replace(/\/+$/, "");
+
+// On Vercel the API lives in a separate project — never build a production site pointing at localhost.
+if (process.env.VERCEL && /localhost|127\.0\.0\.1/.test(BACKEND_URL)) {
+  throw new Error("BACKEND_URL is not set. Add it in Vercel → Project → Settings → Environment Variables (e.g. https://axiom-digital-api.vercel.app), then redeploy.");
+}
 
 const securityHeaders = [
   { key: "X-Content-Type-Options", value: "nosniff" },

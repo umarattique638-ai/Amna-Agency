@@ -3,10 +3,10 @@
   "version": "1.0.0",
   "private": true,
   "type": "module",
-  "description": "Axiom agency REST API — Express + MongoDB (MVC)",
+  "description": "Axiom agency REST API \u2014 Express + MongoDB (MVC)",
   "scripts": {
     "dev": "tsx watch --env-file=.env src/server.ts",
-    "build": "tsup src/server.ts src/scripts/seed.ts src/scripts/reset-admin.ts --format esm --target node20 --out-dir dist --clean",
+    "build": "tsup src/server.ts src/vercel.ts src/scripts/seed.ts src/scripts/reset-admin.ts --format esm --target node20 --out-dir dist --clean",
     "start": "node --env-file=.env dist/server.js",
     "seed": "tsx --env-file=.env src/scripts/seed.ts",
     "typecheck": "tsc --noEmit",

@@ -33,7 +33,7 @@ export function Logo({ className, withWordmark = true, tone = "default" }: LogoP
       {withWordmark && (
         <span className="leading-[0.95] font-black tracking-tight">
           <span className={cn("block text-[19px]", inv ? "text-white" : "text-fg")}>
-            AXIOM<span className="text-accent">DIGITAL</span>
+            AXIOM<span className={inv ? "text-[#9cc3ff]" : "text-accent"}>DIGITAL</span>
           </span>
           <span className={cn("mt-0.5 block text-[10.5px] font-extrabold tracking-[0.42em]", inv ? "text-[#9cc3ff]" : "text-accent")}>STUDIO</span>
         </span>

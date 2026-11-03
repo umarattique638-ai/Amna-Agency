@@ -51,7 +51,9 @@ export function ContactForm({ defaultEmail = "" }: { defaultEmail?: string }) {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(parsed.data),
       });
-      const json = (await res.json()) as { success: boolean; error?: { message?: string } };
+      // a misconfigured proxy returns HTML/text, not JSON — show a friendly message instead of a parse error
+      const json = (await res.json().catch(() => null)) as { success: boolean; error?: { message?: string } } | null;
+      if (!json) throw new Error("Our server is not reachable right now. Please email or WhatsApp us instead.");
       if (!res.ok || !json.success) throw new Error(json.error?.message ?? "Something went wrong");
       setStatus("success");
       setMessage("Thank you — we'll reply within one business day.");

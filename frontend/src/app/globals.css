@@ -16,7 +16,7 @@
   --color-navy: #041f73;
   --color-brand-red: #ed1b24;
 
-  --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", Arial, sans-serif;
+  --font-sans: "Nunito Sans Variable", "Nunito Sans", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", Arial, sans-serif;
 
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-in-out-quart: cubic-bezier(0.76, 0, 0.24, 1);
@@ -70,9 +70,9 @@
 
 @utility display {
   font-family: var(--font-sans);
-  font-weight: 900;
+  font-weight: 800;
   line-height: 1.08;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.035em;
 }
 
 /* Kept for compatibility: highlighted word = solid blue */
@@ -170,3 +170,34 @@
 }
 
 @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+/* budget range slider */
+.budget-range {
+  appearance: none;
+  height: 8px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #1b6fff 0%, #3b89ff var(--pct), var(--color-surface-2) var(--pct));
+  outline: none;
+  cursor: pointer;
+}
+.budget-range::-webkit-slider-thumb {
+  appearance: none;
+  width: 26px;
+  height: 26px;
+  border-radius: 999px;
+  background: #fff;
+  border: 6px solid var(--color-accent);
+  box-shadow: 0 0 0 6px rgb(43 124 255 / 0.15), 0 6px 14px -4px rgb(4 31 115 / 0.4);
+  transition: transform 0.2s;
+}
+.budget-range::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  border-radius: 999px;
+  background: #fff;
+  border: 6px solid var(--color-accent);
+  box-shadow: 0 0 0 6px rgb(43 124 255 / 0.15);
+}
+.budget-range:active::-webkit-slider-thumb,
+.budget-range:focus-visible::-webkit-slider-thumb { transform: scale(1.15); }
+.budget-range:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 6px; }

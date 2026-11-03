@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import { CtaBanner } from "@/components/shared/CtaBanner";
 import { AboutHero } from "@/components/sections/about/AboutHero";
-import { Different, FounderNote, Journey, Mission, TeamsSection, WhatWeDo } from "@/components/sections/about/AboutSections";
+import { Different, Mission, TeamsSection, WhatWeDo } from "@/components/sections/about/AboutSections";
+import { Journey } from "@/components/sections/about/Journey";
+import { Founders } from "@/components/sections/about/Founders";
 
 export const metadata: Metadata = {
   title: "About Us",
@@ -17,7 +19,7 @@ export default function AboutPage() {
       <Different />
       <Journey />
       <TeamsSection />
-      <FounderNote />
+      <Founders />
       <CtaBanner title={<>Let&apos;s build something <span className="serif text-accent">great together.</span></>} />
     </>
   );

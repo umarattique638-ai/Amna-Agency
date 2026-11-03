@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import "@fontsource-variable/nunito-sans/wght.css";
 import "./globals.css";
 import { siteConfig } from "@/config/site";
 import { Toaster } from "@/components/ui/Toaster";

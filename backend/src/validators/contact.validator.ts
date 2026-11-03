@@ -10,7 +10,11 @@ export const SERVICE_OPTIONS = [
   "Video Editing",
 ] as const;
 
-export const BUDGET_OPTIONS = ["< $500", "$500 – $2k", "$2k – $5k", "$5k +"] as const;
+/** Budget slider range (USD). The value is sent as text, e.g. "$450" or "$1,000+". */
+export const BUDGET_MIN = 100;
+export const BUDGET_MAX = 1000;
+export const BUDGET_STEP = 50;
+export const formatBudget = (v: number) => (v >= BUDGET_MAX ? "$1,000+" : `$${v}`);
 
 /** Shared by the client form and the API route — one source of truth. */
 export const contactSchema = z.object({
@@ -25,7 +29,7 @@ export const contactSchema = z.object({
     .or(z.literal("")),
   company: z.string().trim().max(120).optional().or(z.literal("")),
   services: z.array(z.enum(SERVICE_OPTIONS)).min(1, "Pick at least one service"),
-  budget: z.enum(BUDGET_OPTIONS, { error: "Choose a budget range" }),
+  budget: z.string().regex(/^\$(\d{3}|1,000\+)$/, "Choose your budget"),
   message: z.string().trim().min(10, "A few more words, please").max(4000),
   /** honeypot — must stay empty */
   website: z.string().max(0).optional(),

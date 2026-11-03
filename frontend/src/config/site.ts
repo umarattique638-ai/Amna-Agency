@@ -11,8 +11,8 @@ export const siteConfig = {
   whatsapp: "https://wa.me/923000000000",
   /** Owners of the agency — shown on Home, About and in the footer. Edit roles/bios freely. */
   founders: [
-    { name: "Amna", initials: "A", role: "Co-Founder & Owner", bio: "Leads strategy and client relationships, and makes sure every project is planned around real business goals." },
-    { name: "Bilal", initials: "B", role: "Co-Founder & Owner", bio: "Leads delivery across development, design and marketing, and keeps quality high from first call to launch." },
+    { name: "Amna", initials: "A", role: "Co-Founder & Owner", bio: "Leads strategy and client relationships, and makes sure every project is planned around real business goals.", focus: ["Strategy", "Client success", "Marketing"] },
+    { name: "Bilal", initials: "B", role: "Co-Founder & Owner", bio: "Leads delivery across development, design and marketing, and keeps quality high from first call to launch.", focus: ["Development", "Design", "Delivery"] },
   ],
   socials: [
     { label: "Instagram", href: "https://instagram.com", short: "IG" },

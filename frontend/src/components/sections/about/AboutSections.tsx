@@ -1,5 +1,4 @@
-import { siteConfig } from "@/config/site";
-import { aboutPage, story, teams } from "@/content/about";
+import { aboutPage, teams } from "@/content/about";
 import { Photo } from "@/components/ui/Photo";
 import { Reveal } from "@/components/ui/Reveal";
 import { ButtonLink } from "@/components/ui/Button";
@@ -89,25 +88,6 @@ export function Different() {
   );
 }
 
-export function Journey() {
-  return (
-    <section aria-label="Our journey" className="bg-page py-24">
-      <div className="container-x">
-        <SectionHeading eyebrow="Our journey" title={<>From two freelancers to a <Accent>full-service team</Accent>.</>} description={story.paragraphs[1]} />
-        <Reveal as="ol" stagger className="relative mx-auto mt-14 grid max-w-5xl gap-6 md:grid-cols-4">
-          <span aria-hidden className="absolute top-5 right-[12%] left-[12%] hidden h-0.5 bg-gradient-to-r from-accent/20 via-accent to-accent/20 md:block" />
-          {story.milestones.map((m) => (
-            <li key={m.year} className="relative text-center">
-              <span className="relative mx-auto grid size-10 place-items-center rounded-full border-4 border-page bg-accent text-xs font-bold text-white shadow">●</span>
-              <p className="mt-4 text-2xl font-extrabold text-accent">{m.year}</p>
-              <p className="mt-1 text-sm text-mute">{m.text}</p>
-            </li>
-          ))}
-        </Reveal>
-      </div>
-    </section>
-  );
-}
 
 export function TeamsSection() {
   return (
@@ -134,30 +114,4 @@ export function TeamsSection() {
   );
 }
 
-export function FounderNote() {
-  return (
-    <section aria-label="Meet the founders" className="bg-page py-24">
-      <div className="container-x">
-        <SectionHeading eyebrow="Meet the founders" title={<>The People <Accent>Behind Axiom.</Accent></>} description={`${siteConfig.legalName} is owned and run by ${siteConfig.founders.map((f) => f.name).join(" & ")}.`} />
-        <Reveal as="ul" stagger className="mx-auto mt-12 grid max-w-4xl gap-6 md:grid-cols-2">
-          {siteConfig.founders.map((f) => (
-            <li key={f.name} className="flex flex-col items-center rounded-3xl border border-line bg-white p-8 text-center transition-shadow hover:shadow-[0_25px_50px_-30px_rgba(43,124,255,0.55)]">
-              <span aria-hidden className="grid size-24 place-items-center rounded-full bg-gradient-to-br from-[#1b6fff] to-[#3b89ff] text-4xl font-black text-white blue-glow">{f.initials}</span>
-              <h3 className="mt-6 text-2xl font-black">{f.name}</h3>
-              <p className="mt-1 text-[14px] font-bold tracking-wide text-accent uppercase">{f.role}</p>
-              <p className="mt-4 text-[15px] leading-relaxed text-mute">{f.bio}</p>
-            </li>
-          ))}
-        </Reveal>
-        <Reveal className="relative mx-auto mt-14 max-w-3xl rounded-3xl border border-line bg-surface p-8 md:p-12">
-          <span aria-hidden className="absolute -top-6 left-8 grid size-12 place-items-center rounded-2xl bg-accent text-3xl font-black text-white">“</span>
-          <blockquote className="text-lg leading-relaxed font-medium text-fg md:text-xl">{aboutPage.founderQuote}</blockquote>
-          <p className="mt-6 text-sm">
-            <b>{siteConfig.founders.map((f) => f.name).join(" & ")}</b> <span className="text-mute">· Founders, {siteConfig.legalName}</span>
-          </p>
-        </Reveal>
-      </div>
-    </section>
-  );
-}
 

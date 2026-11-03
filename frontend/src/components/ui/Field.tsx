@@ -1,63 +1,66 @@
 import { cn } from "@/lib/utils";
-import type { ComponentPropsWithoutRef } from "react";
+import type { ComponentPropsWithoutRef, ReactNode } from "react";
 
 interface FieldProps {
   label: string;
   error?: string;
   className?: string;
+  /** small icon shown inside the input on the left */
+  icon?: ReactNode;
 }
 
-const inputBase =
-  "peer w-full border-b border-line bg-transparent py-3 text-lg text-fg placeholder:text-fg/30 transition-colors outline-none focus:border-fg";
+const boxBase =
+  "w-full rounded-xl border border-line bg-surface/70 text-[15px] text-fg placeholder:text-fg/35 outline-none transition-[border-color,box-shadow,background-color] hover:border-fg/20 focus:border-accent focus:bg-white focus:ring-4 focus:ring-accent/10 aria-[invalid=true]:border-red-400 aria-[invalid=true]:ring-red-100";
 
-export function TextField({
-  label,
-  error,
-  className,
-  id,
-  ...rest
-}: FieldProps & ComponentPropsWithoutRef<"input">) {
+function Label({ children }: { children: ReactNode }) {
+  return <span className="mb-1.5 block text-[12.5px] font-bold text-fg/80">{children}</span>;
+}
+
+function Err({ id, children }: { id: string; children?: string }) {
+  return children ? (
+    <span id={id} role="alert" className="mt-1.5 block text-xs font-medium text-red-600">
+      {children}
+    </span>
+  ) : null;
+}
+
+export function TextField({ label, error, className, id, icon, ...rest }: FieldProps & ComponentPropsWithoutRef<"input">) {
   return (
     <label htmlFor={id} className={cn("block", className)}>
-      <span className="label text-mute">{label}</span>
-      <input id={id} aria-invalid={!!error} aria-describedby={error ? `${id}-err` : undefined} className={inputBase} {...rest} />
-      {error && (
-        <span id={`${id}-err`} className="mt-2 block text-xs text-red-600">
-          {error}
-        </span>
-      )}
+      <Label>{label}</Label>
+      <span className="relative block">
+        {icon && <span className="pointer-events-none absolute top-1/2 left-3.5 -translate-y-1/2 text-fg/35">{icon}</span>}
+        <input
+          id={id}
+          aria-invalid={!!error}
+          aria-describedby={error ? `${id}-err` : undefined}
+          className={cn(boxBase, "h-11 pr-4", icon ? "pl-10" : "pl-4")}
+          {...rest}
+        />
+      </span>
+      <Err id={`${id}-err`}>{error}</Err>
     </label>
   );
 }
 
-export function TextAreaField({
-  label,
-  error,
-  className,
-  id,
-  ...rest
-}: FieldProps & ComponentPropsWithoutRef<"textarea">) {
+export function TextAreaField({ label, error, className, id, ...rest }: FieldProps & ComponentPropsWithoutRef<"textarea">) {
   return (
     <label htmlFor={id} className={cn("block", className)}>
-      <span className="label text-mute">{label}</span>
+      <Label>{label}</Label>
       <textarea
         id={id}
         rows={4}
         aria-invalid={!!error}
         aria-describedby={error ? `${id}-err` : undefined}
-        className={cn(inputBase, "resize-none")}
+        className={cn(boxBase, "block resize-none px-4 py-3 leading-relaxed")}
         {...rest}
       />
-      {error && (
-        <span id={`${id}-err`} className="mt-2 block text-xs text-red-600">
-          {error}
-        </span>
-      )}
+      <Err id={`${id}-err`}>{error}</Err>
     </label>
   );
 }
 
-/** Pill-style checkbox / radio group. */
+/** Pill-style checkbox / radio group with a check mark on selected pills. */
 export function PillGroup<T extends string>({
   legend,
   name,
@@ -77,7 +80,7 @@ export function PillGroup<T extends string>({
 }) {
   return (
     <fieldset>
-      <legend className="label mb-4 text-mute">{legend}</legend>
+      <legend className="mb-2 text-[12.5px] font-bold text-fg/80">{legend}</legend>
       <div className="flex flex-wrap gap-2">
         {options.map((opt) => {
           const checked = value.includes(opt);
@@ -88,19 +91,22 @@ export function PillGroup<T extends string>({
                 name={name}
                 value={opt}
                 checked={checked}
-                onChange={() =>
-                  onChange(multiple ? (checked ? value.filter((v) => v !== opt) : [...value, opt]) : [opt])
-                }
+                onChange={() => onChange(multiple ? (checked ? value.filter((v) => v !== opt) : [...value, opt]) : [opt])}
                 className="peer sr-only"
               />
-              <span className="block rounded-full border border-line px-4 py-2 text-sm text-fg/70 transition-colors peer-checked:border-accent peer-checked:bg-accent peer-checked:text-white peer-focus-visible:outline peer-focus-visible:outline-1 peer-focus-visible:outline-accent hover:border-fg/60">
+              <span className="flex items-center gap-1.5 rounded-full border border-line bg-white px-3.5 py-1.5 text-[13.5px] font-semibold text-fg/70 transition-all peer-checked:border-accent peer-checked:bg-accent peer-checked:text-white peer-checked:shadow-[0_8px_18px_-8px_rgba(43,124,255,0.8)] peer-focus-visible:ring-4 peer-focus-visible:ring-accent/20 hover:border-accent/50 hover:text-accent">
+                {checked && (
+                  <svg viewBox="0 0 24 24" className="size-3.5" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+                    <path d="m5 12 5 5 9-10" />
+                  </svg>
+                )}
                 {opt}
               </span>
             </label>
           );
         })}
       </div>
-      {error && <p className="mt-2 text-xs text-red-600">{error}</p>}
+      {error && <p role="alert" className="mt-1.5 text-xs font-medium text-red-600">{error}</p>}
     </fieldset>
   );
 }

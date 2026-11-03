@@ -35,15 +35,15 @@ export const hero = {
 export const techLogos = ["React", "Next.js", "Node.js", "Express", "MongoDB", "Tailwind CSS", "TypeScript", "Redux", "Figma", "Premiere Pro", "After Effects", "Google Ads", "Meta Ads"];
 
 export const stackTiles = [
-  { name: "React", role: "UI library", mark: "⚛", color: "#61dafb" },
-  { name: "Next.js", role: "SSR & SEO", mark: "N", color: "#111111" },
-  { name: "Node.js", role: "Server runtime", mark: "⬢", color: "#5fa04e" },
-  { name: "Express", role: "REST APIs", mark: "ex", color: "#333333" },
-  { name: "MongoDB", role: "Database", mark: "◆", color: "#47a248" },
-  { name: "Tailwind", role: "Styling", mark: "≈", color: "#06b6d4" },
-  { name: "TypeScript", role: "Type safety", mark: "TS", color: "#3178c6" },
-  { name: "Redux", role: "App state", mark: "◎", color: "#764abc" },
-];
+  { name: "React", role: "UI library", icon: "react", color: "#149eca" },
+  { name: "Next.js", role: "SSR & SEO", icon: "next", color: "#111111" },
+  { name: "Node.js", role: "Server runtime", icon: "node", color: "#5fa04e" },
+  { name: "Express", role: "REST APIs", icon: "express", color: "#353535" },
+  { name: "MongoDB", role: "Database", icon: "mongodb", color: "#47a248" },
+  { name: "Tailwind", role: "Styling", icon: "tailwind", color: "#06b6d4" },
+  { name: "TypeScript", role: "Type safety", icon: "typescript", color: "#3178c6" },
+  { name: "Redux", role: "App state", icon: "redux", color: "#764abc" },
+] as const;
 
 export const about = {
   photo: photos.teamPresenting,
@@ -83,10 +83,10 @@ export const featuredWork: Project[] = [
 ];
 
 export const processSteps = [
-  { n: "01", title: "Discover", text: "A free call to understand your goals, users and budget." },
-  { n: "02", title: "Design", text: "Wireframes and pixel-perfect UI you approve in Figma." },
-  { n: "03", title: "Develop", text: "We build, test and share progress links every week." },
-  { n: "04", title: "Launch & grow", text: "Go live, then SEO, social, video and ads bring customers." },
+  { n: "01", icon: "search", title: "Discover", text: "A free call to understand your goals, users and budget." },
+  { n: "02", icon: "pen", title: "Design", text: "Wireframes and pixel-perfect UI you approve in Figma." },
+  { n: "03", icon: "code", title: "Develop", text: "We build, test and share progress links every week." },
+  { n: "04", icon: "rocket", title: "Launch & grow", text: "Go live, then SEO, social, video and ads bring customers." },
 ];
 
 export const homeFaqs = [

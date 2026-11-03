@@ -4,21 +4,22 @@ import { toast } from "@/lib/toast";
 import { useState, type FormEvent } from "react";
 import { z } from "zod";
 import {
-  BUDGET_OPTIONS,
+  formatBudget,
   SERVICE_OPTIONS,
   contactSchema,
   type ContactErrors,
 } from "@/lib/validations/contact";
 import { PillGroup, TextAreaField, TextField } from "@/components/ui/Field";
 import { Button } from "@/components/ui/Button";
+import { LineIcon } from "@/components/ui/LineIcon";
+import { BudgetSlider } from "./BudgetSlider";
 
 type Status = "idle" | "submitting" | "success" | "error";
 type Service = (typeof SERVICE_OPTIONS)[number];
-type Budget = (typeof BUDGET_OPTIONS)[number];
 
 export function ContactForm({ defaultEmail = "" }: { defaultEmail?: string }) {
   const [services, setServices] = useState<Service[]>([]);
-  const [budget, setBudget] = useState<Budget[]>([]);
+  const [budget, setBudget] = useState(300);
   const [errors, setErrors] = useState<ContactErrors>({});
   const [status, setStatus] = useState<Status>("idle");
   const [message, setMessage] = useState("");
@@ -35,7 +36,7 @@ export function ContactForm({ defaultEmail = "" }: { defaultEmail?: string }) {
       message: fd.get("message"),
       website: fd.get("website"),
       services,
-      budget: budget[0],
+      budget: formatBudget(budget),
     };
 
     const parsed = contactSchema.safeParse(payload);
@@ -63,7 +64,7 @@ export function ContactForm({ defaultEmail = "" }: { defaultEmail?: string }) {
       setMessage("Thank you — we'll reply within one business day.");
       form.reset();
       setServices([]);
-      setBudget([]);
+      setBudget(300);
     } catch (err) {
       setStatus("error");
       toast.error("Couldn't send your enquiry", err instanceof Error ? err.message : undefined);
@@ -72,27 +73,35 @@ export function ContactForm({ defaultEmail = "" }: { defaultEmail?: string }) {
   }
 
   return (
-    <form onSubmit={onSubmit} noValidate className="space-y-10">
-      <div className="grid gap-10 sm:grid-cols-2">
-        <TextField id="name" name="name" label="Your name" placeholder="Jane Doe" autoComplete="name" error={errors.name} />
-        <TextField id="email" name="email" type="email" label="Email" placeholder="jane@company.com" autoComplete="email" defaultValue={defaultEmail} error={errors.email} />
-      </div>
-      <div className="grid gap-10 sm:grid-cols-2">
-        <TextField id="phone" name="phone" type="tel" label="Phone / WhatsApp (optional)" placeholder="+92 300 1234567" autoComplete="tel" error={errors.phone} />
-        <TextField id="company" name="company" label="Company (optional)" placeholder="Company Ltd." autoComplete="organization" />
+    <form onSubmit={onSubmit} noValidate className="space-y-4">
+      <div className="grid gap-4 sm:grid-cols-2">
+        <TextField id="name" name="name" label="Your name *" placeholder="Jane Doe" autoComplete="name" error={errors.name} icon={<LineIcon name="user" className="size-[18px]" />} />
+        <TextField id="email" name="email" type="email" label="Email *" placeholder="jane@company.com" autoComplete="email" defaultValue={defaultEmail} error={errors.email} icon={<LineIcon name="mail" className="size-[18px]" />} />
+        <TextField id="phone" name="phone" type="tel" label="Phone / WhatsApp" placeholder="+92 300 1234567" autoComplete="tel" error={errors.phone} icon={<LineIcon name="phone" className="size-[18px]" />} />
+        <TextField id="company" name="company" label="Company" placeholder="Company Ltd." autoComplete="organization" icon={<LineIcon name="building" className="size-[18px]" />} />
       </div>
 
-      <PillGroup legend="I'm interested in" name="services" multiple options={SERVICE_OPTIONS} value={services} onChange={setServices} error={errors.services} />
-      <PillGroup legend="Budget" name="budget" options={BUDGET_OPTIONS} value={budget} onChange={setBudget} error={errors.budget} />
+      <PillGroup legend="I'm interested in *" name="services" multiple options={SERVICE_OPTIONS} value={services} onChange={setServices} error={errors.services} />
 
-      <TextAreaField id="message" name="message" label="Tell us about the project" placeholder="Goals, timeline, links…" error={errors.message} />
+      <div className="grid gap-5 md:grid-cols-[1fr_1.25fr] md:items-start">
+        <div className="rounded-2xl border border-line bg-surface/60 px-4 pt-3.5 pb-3">
+          <BudgetSlider value={budget} onChange={setBudget} error={errors.budget} />
+        </div>
+        <TextAreaField id="message" name="message" label="Tell us about the project *" placeholder="Goals, timeline, links…" rows={4} error={errors.message} />
+      </div>
 
       {/* honeypot */}
       <input type="text" name="website" tabIndex={-1} autoComplete="off" className="hidden" aria-hidden />
 
-      <div className="flex flex-wrap items-center gap-6">
-        <Button type="submit" disabled={status === "submitting"}>
-          {status === "submitting" ? "Sending…" : "Send enquiry ↗"}
+      <div className="flex flex-wrap items-center gap-x-6 gap-y-3 border-t border-line pt-4">
+        <Button type="submit" size="lg" disabled={status === "submitting"} className="min-w-52">
+          {status === "submitting" ? (
+            <>
+              <span aria-hidden className="size-4 animate-spin rounded-full border-2 border-white border-t-transparent" /> Sending…
+            </>
+          ) : (
+            "Send enquiry ↗"
+          )}
         </Button>
         <p role="status" aria-live="polite" className={status === "error" ? "text-sm text-red-600" : "text-sm text-fg/70"}>
           {message}

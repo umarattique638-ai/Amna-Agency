@@ -5,7 +5,6 @@ import { StackSection } from "@/components/sections/home/StackSection";
 import { StatsSection } from "@/components/sections/home/StatsSection";
 import { WhyChoose } from "@/components/sections/home/WhyChoose";
 import { WorkSection } from "@/components/sections/home/WorkSection";
-import { ReelSection } from "@/components/sections/home/ReelSection";
 import { ProcessSection } from "@/components/sections/home/ProcessSection";
 import { HomeFaq } from "@/components/sections/home/HomeFaq";
 import { CtaBanner } from "@/components/shared/CtaBanner";
@@ -24,7 +23,6 @@ export default async function HomePage() {
       <StatsSection />
       <WhyChoose />
       <WorkSection />
-      <ReelSection />
       <ProcessSection />
       <CtaBanner />
       <HomeFaq />

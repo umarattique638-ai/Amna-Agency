@@ -7,7 +7,8 @@ import { MernStack } from "@/components/sections/services/MernStack";
 import { Packages } from "@/components/sections/services/Packages";
 import { ServicesFaq } from "@/components/sections/services/ServicesFaq";
 import { Accent, Red } from "@/components/ui/SectionHeading";
-import { servicesHero } from "@/content/services";
+import { VideoCard } from "@/components/ui/VideoCard";
+import { reelVideo } from "@/content/videos";
 import { getServices } from "@/lib/server/api";
 
 export const metadata: Metadata = {
@@ -25,7 +26,12 @@ export default async function ServicesPage() {
       <PageHero
         title={<><Red>Development,</Red> Marketing, Design &amp; <Accent>Video.</Accent></>}
         description="Services that work even better together. Hire us for one, or let one team handle your website, social media, brand and ads."
-        photo={servicesHero.photo}
+        media={
+          <div className="relative mx-auto w-full max-w-[380px] lg:mr-0">
+            <div aria-hidden className="absolute -inset-6 rounded-[40px] bg-gradient-to-br from-accent/25 to-[#9cc3ff]/10 blur-2xl" />
+            <VideoCard clip={reelVideo} caption={false} className="relative" />
+          </div>
+        }
       />
       <ServiceNav services={services} />
       <ServiceDetails services={services} />

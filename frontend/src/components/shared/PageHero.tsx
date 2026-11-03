@@ -9,11 +9,13 @@ interface PageHeroProps {
   title: React.ReactNode;
   description: React.ReactNode;
   photo?: PhotoType;
+  /** custom right-side visual (e.g. a video) — used instead of `photo` */
+  media?: React.ReactNode;
   children?: React.ReactNode;
 }
 
 /** Inner-page header:, bold title with orange highlight, intro, optional photo. */
-export function PageHero({ title, description, photo, children }: PageHeroProps) {
+export function PageHero({ title, description, photo, media, children }: PageHeroProps) {
   const root = useRef<HTMLElement>(null);
   useGSAP(
     () => {
@@ -29,17 +31,19 @@ export function PageHero({ title, description, photo, children }: PageHeroProps)
     { scope: root },
   );
 
+  const side = !!(photo || media);
   return (
     <section ref={root} className="hero-wash relative overflow-hidden pt-28 pb-10 md:pb-12">
       <div aria-hidden className="dot-grid pointer-events-none absolute inset-0 opacity-60 [mask-image:radial-gradient(60%_60%_at_30%_30%,#000,transparent)]" />
       <div data-intro-hide className="container-x relative">
-        <div className={photo ? "mt-6 grid items-center gap-12 lg:grid-cols-[1.1fr_1fr]" : "mx-auto mt-8 max-w-3xl text-center"}>
+        <div className={side ? "mt-6 grid items-center gap-12 lg:grid-cols-[1.1fr_1fr]" : "mx-auto mt-8 max-w-3xl text-center"}>
           <div>
             <h1 data-ph className="display h1-display">{title}</h1>
-            <p data-ph className={`mt-5 text-[17px] leading-relaxed text-mute ${photo ? "max-w-xl" : "mx-auto max-w-2xl"}`}>{description}</p>
+            <p data-ph className={`mt-5 text-[17px] leading-relaxed text-mute ${side ? "max-w-xl" : "mx-auto max-w-2xl"}`}>{description}</p>
             {children && <div data-ph className="mt-8">{children}</div>}
           </div>
-          {photo && (
+          {media && <div data-ph-photo className="relative">{media}</div>}
+          {!media && photo && (
             <div data-ph-photo className="group relative aspect-[4/3] overflow-hidden rounded-3xl shadow-[0_40px_80px_-40px_rgba(28,31,48,0.5)]">
               <Photo
                 photo={photo}

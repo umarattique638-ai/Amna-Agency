@@ -7,7 +7,7 @@ import { ContactForm } from "./ContactForm";
 
 export function ContactSection({ defaultEmail }: { defaultEmail?: string }) {
   return (
-    <section id="enquiry" aria-label="Contact form and details" className="scroll-mt-24 bg-surface py-12 md:py-16">
+    <section id="enquiry" aria-label="Contact form and details" className="scroll-mt-24 bg-surface pt-6 pb-16 md:pt-8 md:pb-20">
       <div className="container-x grid gap-8 lg:grid-cols-[1.75fr_1fr] lg:items-stretch lg:gap-8">
         {/* form card — stretches to the sidebar's height */}
         <Reveal className="flex h-full flex-col rounded-[28px] border border-line bg-white p-6 shadow-[0_40px_80px_-50px_rgba(4,31,115,0.45)] md:p-8">

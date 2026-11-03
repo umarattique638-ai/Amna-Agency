@@ -3,19 +3,17 @@
 import { useRef } from "react";
 import { gsap, useGSAP } from "@/lib/gsap";
 import { Photo } from "@/components/ui/Photo";
-import { Eyebrow } from "@/components/ui/SectionHeading";
 import type { Photo as PhotoType } from "@/types";
 
 interface PageHeroProps {
-  eyebrow: string;
   title: React.ReactNode;
   description: React.ReactNode;
   photo?: PhotoType;
   children?: React.ReactNode;
 }
 
-/** Inner-page header: eyebrow, bold title with orange highlight, intro, optional photo. */
-export function PageHero({ eyebrow, title, description, photo, children }: PageHeroProps) {
+/** Inner-page header:, bold title with orange highlight, intro, optional photo. */
+export function PageHero({ title, description, photo, children }: PageHeroProps) {
   const root = useRef<HTMLElement>(null);
   useGSAP(
     () => {
@@ -32,13 +30,12 @@ export function PageHero({ eyebrow, title, description, photo, children }: PageH
   );
 
   return (
-    <section ref={root} className="hero-wash relative overflow-hidden pt-28 pb-16 md:pb-20">
+    <section ref={root} className="hero-wash relative overflow-hidden pt-28 pb-10 md:pb-12">
       <div aria-hidden className="dot-grid pointer-events-none absolute inset-0 opacity-60 [mask-image:radial-gradient(60%_60%_at_30%_30%,#000,transparent)]" />
       <div data-intro-hide className="container-x relative">
         <div className={photo ? "mt-6 grid items-center gap-12 lg:grid-cols-[1.1fr_1fr]" : "mx-auto mt-8 max-w-3xl text-center"}>
           <div>
-            <span data-ph className="block"><Eyebrow className={photo ? undefined : "justify-center"}>{eyebrow}</Eyebrow></span>
-            <h1 data-ph className="display mt-5 text-[clamp(2.3rem,4.6vw,3.8rem)]">{title}</h1>
+            <h1 data-ph className="display text-[clamp(2.3rem,4.6vw,3.8rem)]">{title}</h1>
             <p data-ph className={`mt-5 text-[17px] leading-relaxed text-mute ${photo ? "max-w-xl" : "mx-auto max-w-2xl"}`}>{description}</p>
             {children && <div data-ph className="mt-8">{children}</div>}
           </div>

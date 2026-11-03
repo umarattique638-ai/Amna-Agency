@@ -4,7 +4,7 @@ import { useRef } from "react";
 import { gsap, useGSAP } from "@/lib/gsap";
 import { hero } from "@/content/home";
 import { ButtonLink } from "@/components/ui/Button";
-import { CheckList, Eyebrow, Hollow, Red } from "@/components/ui/SectionHeading";
+import { CheckList, Hollow, Red } from "@/components/ui/SectionHeading";
 import { LogoMark } from "@/components/ui/Logo";
 import { LineIcon } from "@/components/ui/LineIcon";
 
@@ -41,8 +41,7 @@ export function Hero() {
       <div aria-hidden className="dot-grid pointer-events-none absolute inset-y-0 right-0 w-1/2 opacity-50 [mask-image:radial-gradient(60%_60%_at_70%_40%,#000,transparent)]" />
       <div data-intro-hide className="container-x relative grid items-center gap-14 lg:grid-cols-[1.08fr_1fr]">
         <div>
-          <span data-h className="block"><Eyebrow>{hero.eyebrow}</Eyebrow></span>
-          <h1 className="display mt-5 text-[clamp(2.7rem,6.2vw,5.4rem)] text-fg">
+          <h1 className="display text-[clamp(2.7rem,6.2vw,5.4rem)] text-fg">
             <span data-h className="block"><Hollow>Full</Hollow> <Red>Stack,</Red></span>
             <span data-h className="block">Web &amp; Marketing</span>
             <span data-h className="block text-accent">Agency.</span>

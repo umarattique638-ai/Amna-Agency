@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { BlogExplorer } from "@/components/sections/blog/BlogExplorer";
 import { CtaBanner } from "@/components/shared/CtaBanner";
-import { Eyebrow } from "@/components/ui/SectionHeading";
 import { getPublishedPosts } from "@/lib/server/api";
 
 export const metadata: Metadata = {
@@ -16,8 +15,7 @@ export default async function BlogPage() {
     <>
       <section className="hero-wash">
         <header className="container-x max-w-2xl pt-32 pb-10 text-center md:pt-36">
-          <Eyebrow className="justify-center">Axiom blog</Eyebrow>
-          <h1 className="display mt-5 text-[clamp(2rem,4vw,2.9rem)]">
+          <h1 className="display text-[clamp(2rem,4vw,2.9rem)]">
             <span className="text-outline-red">Digital</span> Growth, <span className="text-accent">Explained.</span>
           </h1>
           <p className="mt-4 text-[15px] leading-relaxed text-mute">

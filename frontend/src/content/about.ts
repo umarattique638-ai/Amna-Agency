@@ -69,9 +69,10 @@ export const aboutPage = {
     text: "For years, small and growing businesses had two bad options: cheap freelancers who disappear, or big agencies with big retainers. We built Axiom to be the third option — a senior, full-service team that is honest about budgets and obsessed with results.",
   },
   whatWeDo: [
-    { icon: "</>", title: "We build", text: "Fast, secure websites and web apps on the MERN stack — designed to rank on Google and convert visitors into customers." },
-    { icon: "✎", title: "We design", text: "Logos, brand identities and social creatives that make your business instantly recognisable and trusted." },
-    { icon: "↗", title: "We grow", text: "Social media, SEO and paid ads that bring the right people to your brand — measured every single month." },
+    { icon: "code", title: "We build", text: "Fast, secure websites and web apps with React, Next.js and Node — designed to rank on Google and turn visitors into customers.", link: { label: "See development", href: "/services#website-development" } },
+    { icon: "pen", title: "We design", text: "Logos, brand identities, UI and social creatives that make your business instantly recognisable and trusted.", link: { label: "See design", href: "/services#graphic-designing" } },
+    { icon: "play", title: "We film & edit", text: "Reels, YouTube videos and video ads — edited for retention and cut for every platform's format.", link: { label: "See video editing", href: "/services#video-editing" } },
+    { icon: "bolt", title: "We grow", text: "Social media, SEO and paid ads that bring the right people to your brand — measured every single month.", link: { label: "See marketing", href: "/services#digital-marketing" } },
   ],
   different: [
     { title: "Honest advice", text: "If a cheaper solution is the right one for you, we'll say so. Our reputation matters more than one invoice." },

@@ -1,30 +1,11 @@
 import { aboutPage, teams } from "@/content/about";
-import { GrowthBrowser } from "@/components/visuals/GrowthBrowser";
+import Link from "next/link";
 import { Reveal } from "@/components/ui/Reveal";
-import { ButtonLink } from "@/components/ui/Button";
-import { Accent, Eyebrow, SectionHeading } from "@/components/ui/SectionHeading";
+import { LineIcon } from "@/components/ui/LineIcon";
+import { LogoMark } from "@/components/ui/Logo";
+import { Accent, SectionHeading } from "@/components/ui/SectionHeading";
 
 
-export function Mission() {
-  const { mission } = aboutPage;
-  return (
-    <section aria-label="Our mission" className="bg-surface pt-28 pb-24">
-      <div className="container-x">
-        <Reveal stagger className="mx-auto max-w-3xl text-center">
-          <Eyebrow>Our mission</Eyebrow>
-          <h2 className="display mt-4 text-[clamp(1.9rem,3.6vw,3rem)]">
-            {mission.title[0]}
-            <br />
-            <Accent>{mission.title[1]}</Accent>
-          </h2>
-          <p className="mx-auto mt-5 max-w-2xl text-[16px] leading-relaxed text-mute">{mission.text}</p>
-          <div className="mt-8"><ButtonLink href="/contact" arrow>Start a project</ButtonLink></div>
-        </Reveal>
-        <GrowthBrowser />
-      </div>
-    </section>
-  );
-}
 
 export function WhatWeDo() {
   return (
@@ -33,14 +14,22 @@ export function WhatWeDo() {
         <SectionHeading
           eyebrow="What we do"
           title={<>We build, design, film and market.<br /><Accent>So you can run your business.</Accent></>}
-          description="Three disciplines under one roof — planned together, so your website, content and ads all push in the same direction."
+          description="Four disciplines under one roof — planned together, so your website, content and ads all push in the same direction."
         />
-        <Reveal stagger className="mx-auto mt-12 grid max-w-5xl gap-5 rounded-[28px] bg-surface-2 p-5 md:grid-cols-3 md:p-7">
-          {aboutPage.whatWeDo.map((c) => (
-            <article key={c.title} className="rounded-2xl border border-accent/40 bg-page/70 p-7 text-center transition-all hover:-translate-y-1 hover:border-accent hover:bg-page">
-              <span className="mx-auto grid size-12 place-items-center rounded-2xl bg-accent-soft text-lg font-bold text-accent">{c.icon}</span>
-              <h3 className="mt-5 text-lg font-bold">{c.title}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-mute">{c.text}</p>
+        <Reveal stagger className="relative mt-12 grid gap-5 overflow-hidden rounded-[28px] bg-[#dce9ff] p-5 sm:grid-cols-2 md:p-8 lg:grid-cols-4">
+          {aboutPage.whatWeDo.map((c, i) => (
+            <article key={c.title} className="group relative flex flex-col items-center overflow-hidden rounded-2xl border border-accent/60 bg-white/70 px-6 pt-10 pb-8 text-center backdrop-blur transition-[background-color,box-shadow,border-color] duration-300 hover:border-accent hover:bg-white hover:shadow-[0_24px_50px_-30px_rgba(43,124,255,0.7)]">
+              {i === aboutPage.whatWeDo.length - 1 && (
+                <span aria-hidden className="pointer-events-none absolute -right-10 -bottom-10 opacity-[0.07]"><LogoMark className="size-44" /></span>
+              )}
+              <span className="text-accent transition-transform duration-300 group-hover:-translate-y-1 group-hover:scale-110">
+                <LineIcon name={c.icon} className="size-9" />
+              </span>
+              <h3 className="mt-6 text-[20px] font-bold text-fg">{c.title}</h3>
+              <p className="mt-2.5 flex-1 text-[15.5px] leading-relaxed text-mute">{c.text}</p>
+              <Link href={c.link.href} className="mt-5 inline-flex items-center gap-1.5 text-[15px] font-bold text-accent">
+                {c.link.label} <span aria-hidden className="transition-transform group-hover:translate-x-1">→</span>
+              </Link>
             </article>
           ))}
         </Reveal>

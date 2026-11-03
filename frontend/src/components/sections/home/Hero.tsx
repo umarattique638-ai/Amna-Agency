@@ -5,7 +5,8 @@ import { gsap, useGSAP } from "@/lib/gsap";
 import { hero } from "@/content/home";
 import { ButtonLink } from "@/components/ui/Button";
 import { CheckList, Eyebrow, Hollow, Red } from "@/components/ui/SectionHeading";
-import { Photo } from "@/components/ui/Photo";
+import { LogoMark } from "@/components/ui/Logo";
+import { LineIcon } from "@/components/ui/LineIcon";
 
 /** Home hero — light blue wash, heavy three-line headline (outline · red outline · solid · blue), photo right. */
 export function Hero() {
@@ -19,8 +20,25 @@ export function Hero() {
         gsap
           .timeline({ defaults: { ease: "expo.out" } })
           .from("[data-h]", { y: 34, opacity: 0, stagger: 0.08, duration: 1 })
-          .from("[data-photo]", { y: 40, opacity: 0, scale: 0.97, duration: 1.3 }, 0.1)
-          .from("[data-chip]", { y: 16, opacity: 0, stagger: 0.1, duration: 0.8 }, 0.6);
+          .from("[data-card]", { y: 40, opacity: 0, scale: 0.97, duration: 1.3 }, 0.1)
+          .from("[data-step]", { x: 24, opacity: 0, stagger: 0.08, duration: 0.7 }, 0.45)
+          .from("[data-tick]", { scale: 0, stagger: 0.12, duration: 0.5, ease: "back.out(3)" }, 0.8)
+          .from("[data-chip]", { y: 16, opacity: 0, stagger: 0.1, duration: 0.8 }, 0.7);
+        gsap.to("[data-orbit]", { rotate: 360, duration: 60, ease: "none", repeat: -1 });
+        // a soft "in progress" wave travelling down the roadmap steps
+        gsap.to("[data-step]", {
+          backgroundColor: "#eff4ff",
+          borderColor: "rgba(43,124,255,0.45)",
+          x: 4,
+          duration: 0.6,
+          ease: "sine.inOut",
+          delay: 1.8,
+          stagger: { each: 0.7, repeat: -1, yoyo: true, repeatDelay: 2.9 },
+        });
+        // radar pulse around the rocket
+        gsap.fromTo("[data-pulse]", { scale: 1, opacity: 0.7 }, { scale: 1.7, opacity: 0, duration: 1.8, ease: "power1.out", repeat: -1, stagger: 0.9 });
+        // gentle hover-float of the whole card
+        gsap.to("[data-card]", { y: -8, duration: 3.2, ease: "sine.inOut", yoyo: true, repeat: -1, delay: 1.4 });
         gsap.to("[data-float]", { y: -10, duration: 2.6, ease: "sine.inOut", yoyo: true, repeat: -1, stagger: 0.6 });
       });
       return () => mm.revert();
@@ -47,41 +65,81 @@ export function Hero() {
           <div data-h><CheckList className="mt-8" items={hero.checklist} /></div>
         </div>
 
-        <div className="relative">
-          <div data-photo className="relative aspect-[5/4.4] overflow-hidden rounded-[2rem] shadow-[0_40px_80px_-40px_rgba(4,31,115,0.55)]">
-            <Photo photo={hero.photo} priority sizes="(max-width: 1024px) 100vw, 46vw" />
-            <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-navy/50 via-transparent to-transparent" />
-          </div>
-
-          {/* floating cards */}
-          <div data-chip className="absolute left-2 top-10 sm:-left-10">
-            <div data-float className="rounded-2xl bg-[#0b1530] p-4 font-mono text-[12px] leading-relaxed text-white shadow-[0_25px_50px_-20px_rgba(2,11,47,0.8)]">
-              <p className="mb-2 flex gap-1.5" aria-hidden><i className="size-2.5 rounded-full bg-[#ff5f57]" /><i className="size-2.5 rounded-full bg-[#febc2e]" /><i className="size-2.5 rounded-full bg-[#28c840]" /></p>
-              <p><span className="text-[#c792ea]">const</span> stack = [</p>
-              <p className="pl-4 text-[#9cc3ff]">&quot;React&quot;, &quot;Next.js&quot;,</p>
-              <p className="pl-4 text-[#9cc3ff]">&quot;Node&quot;, &quot;Express&quot;,</p>
-              <p className="pl-4 text-[#9cc3ff]">&quot;MongoDB&quot;, &quot;Tailwind&quot;</p>
-              <p>];</p>
-            </div>
-          </div>
-          <div data-chip className="absolute right-2 bottom-24 sm:-right-8">
-            <div data-float className="flex items-center gap-3 rounded-2xl bg-white px-4 py-3 shadow-[0_20px_45px_-20px_rgba(4,31,115,0.45)]">
-              <span className="grid size-10 place-items-center rounded-xl bg-accent-soft text-lg font-black text-accent">↗</span>
-              <span className="leading-tight">
-                <span className="block text-[14px] font-bold">SEO · Ads · Social</span>
-                <span className="block text-[12px] text-mute">Growth after launch</span>
-              </span>
-            </div>
-          </div>
-          <div data-chip className="absolute bottom-6 left-6">
-            <div className="flex flex-wrap gap-2">
-              {["Design", "Video", "Branding"].map((t) => (
-                <span key={t} className="rounded-full bg-white/95 px-3.5 py-1.5 text-[12.5px] font-bold text-navy shadow">{t}</span>
-              ))}
-            </div>
-          </div>
-        </div>
+        <HeroCard />
       </div>
     </section>
+  );
+}
+
+/** Chip floating around the hero card. */
+function Chip({ icon, title, text, className }: { icon: string; title: string; text: string; className: string }) {
+  return (
+    <div data-chip className={`absolute z-20 hidden sm:block ${className}`}>
+      <div data-float className="flex items-center gap-3 rounded-2xl border border-line bg-white/95 px-4 py-3 shadow-[0_20px_45px_-22px_rgba(4,31,115,0.45)] backdrop-blur">
+        <span className="grid size-10 place-items-center rounded-xl bg-accent-soft text-accent"><LineIcon name={icon} /></span>
+        <span className="leading-tight">
+          <span className="block text-[14px] font-bold text-fg">{title}</span>
+          <span className="block text-[12px] text-mute">{text}</span>
+        </span>
+      </div>
+    </div>
+  );
+}
+
+/** Product-style roadmap card (replaces the stock photo) — all in the brand blues. */
+function HeroCard() {
+  const c = hero.card;
+  return (
+    <div className="relative mx-auto w-full max-w-[540px] py-10 sm:px-6">
+      {/* decorative orbit + glow */}
+      <div aria-hidden className="pointer-events-none absolute inset-0 grid place-items-center">
+        <div data-orbit className="size-[118%] rounded-full border border-dashed border-accent/25" />
+        <div className="absolute size-[80%] rounded-full bg-[radial-gradient(circle,rgb(43_124_255/0.18),transparent_70%)]" />
+      </div>
+
+      <div data-card className="relative z-10 rounded-[1.75rem] border border-white bg-white/90 p-5 shadow-[0_40px_80px_-40px_rgba(4,31,115,0.55)] ring-1 ring-line backdrop-blur sm:p-6">
+        <div className="flex items-start justify-between gap-3">
+          <div className="flex items-center gap-3">
+            <LogoMark className="size-10" />
+            <div className="leading-tight">
+              <p className="text-[15.5px] font-extrabold text-fg">{c.title}</p>
+              <p className="text-[12.5px] text-mute">{c.sub}</p>
+            </div>
+          </div>
+          <span className="flex shrink-0 items-center gap-1.5 rounded-full bg-accent-soft px-3 py-1 text-[12px] font-bold text-accent">
+            <i className="size-1.5 rounded-full bg-accent" aria-hidden /> {c.badge}
+          </span>
+        </div>
+
+        <div className="mt-5 flex items-center gap-5 rounded-2xl border border-accent/15 bg-gradient-to-br from-surface-2 to-white p-5">
+          <span className="relative grid size-[72px] shrink-0 place-items-center rounded-full border-2 border-dashed border-accent/40">
+            <span data-pulse aria-hidden className="absolute inset-1 rounded-full border-2 border-accent/50" />
+            <span data-pulse aria-hidden className="absolute inset-1 rounded-full border-2 border-accent/50" />
+            <span className="grid size-14 place-items-center rounded-full bg-gradient-to-br from-[#1b6fff] to-[#3b89ff] text-white blue-glow">
+              <LineIcon name="rocket" className="size-6" />
+            </span>
+          </span>
+          <div>
+            <p className="text-[18px] leading-tight font-extrabold text-fg">{c.highlight.title}</p>
+            <p className="mt-1 text-[13px] leading-relaxed text-mute">{c.highlight.text}</p>
+          </div>
+        </div>
+
+        <ol className="mt-4 space-y-2.5">
+          {c.steps.map((s) => (
+            <li data-step key={s.title} className="flex items-center gap-3 rounded-xl border border-line bg-white px-3.5 py-2.5 transition-colors hover:border-accent/40">
+              <span className="grid size-8 shrink-0 place-items-center rounded-lg bg-accent-soft text-accent"><LineIcon name={s.icon} className="size-[18px]" /></span>
+              <span className="flex-1 text-[14px] font-semibold text-fg">{s.title}</span>
+              <span className="hidden text-[12px] text-mute sm:inline">{s.tag}</span>
+              <span data-tick className="grid size-5 place-items-center rounded-full bg-accent text-white"><LineIcon name="check" className="size-3" /></span>
+            </li>
+          ))}
+        </ol>
+      </div>
+
+      <Chip {...c.chips.top} className="-top-1 left-0 sm:-left-4" />
+      <Chip {...c.chips.left} className="-bottom-2 left-0 sm:-left-6" />
+      <Chip {...c.chips.right} className="right-0 -bottom-2 sm:-right-6" />
+    </div>
   );
 }

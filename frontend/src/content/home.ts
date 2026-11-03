@@ -10,7 +10,25 @@ export const hero = {
   description:
     "We design and develop fast, modern websites and web apps with React, Next.js, Node.js, Express and Tailwind CSS — then grow them with SEO, social media marketing, graphic design and video editing.",
   checklist: ["Free strategy call", "Fixed, transparent quotes", "You own 100% of the code"],
-  photo: photos.teamLaptops,
+  /** Project-roadmap card on the right of the hero */
+  card: {
+    title: "Your project roadmap",
+    sub: "Plan · Build · Grow",
+    badge: "Free strategy call",
+    highlight: { title: "From idea to launch.", text: "Design, development and marketing — handled by one team, step by step." },
+    steps: [
+      { icon: "search", title: "Discovery & planning", tag: "Plan" },
+      { icon: "pen", title: "UI/UX design in Figma", tag: "Design" },
+      { icon: "code", title: "Build with React, Next.js & Node", tag: "Build" },
+      { icon: "bolt", title: "Speed, SEO & testing", tag: "Test" },
+      { icon: "rocket", title: "Launch & grow with marketing", tag: "Grow" },
+    ],
+    chips: {
+      top: { icon: "layers", title: "Full-stack + marketing", text: "One team, every channel" },
+      left: { icon: "stack", title: "Next.js · Node · MongoDB", text: "Modern, scalable stack" },
+      right: { icon: "play", title: "Social · Design · Video", text: "Content that converts" },
+    },
+  },
 };
 
 /** Stack strip below the hero. */

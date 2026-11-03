@@ -23,7 +23,6 @@ export default async function ServicesPage() {
   return (
     <>
       <PageHero
-        crumb="Services"
         eyebrow="Our services"
         title={<><Red>Development,</Red> Marketing, Design &amp; <Accent>Video.</Accent></>}
         description="Services that work even better together. Hire us for one, or let one team handle your website, social media, brand and ads."

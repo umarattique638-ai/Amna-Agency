@@ -13,7 +13,6 @@ export default async function ContactPage({ searchParams }: { searchParams: Prom
   return (
     <>
       <PageHero
-        crumb="Contact"
         eyebrow="Contact us"
         title={<>Let&apos;s <Red>Talk</Red> About Your <Accent>Project.</Accent></>}
         description="Free consultation, honest advice and a clear quote — usually within 24 hours."

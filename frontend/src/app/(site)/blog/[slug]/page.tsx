@@ -59,10 +59,6 @@ export default async function PostPage({ params }: Props) {
     <>
       <ReadingProgress targetId="article-body" />
       <article className="bg-page pt-28 pb-20">
-        <nav aria-label="Breadcrumb" className="container-x max-w-6xl text-[12px] text-mute">
-          <Link href="/" className="hover:text-accent">Home</Link> <span aria-hidden>›</span>{" "}
-          <Link href="/blog" className="hover:text-accent">Blog</Link> <span aria-hidden>›</span> <span className="text-fg">{post.category}</span>
-        </nav>
         <header className="container-x mt-12 max-w-4xl text-center">
           <span className="inline-flex rounded-full bg-accent-soft px-3.5 py-1.5 text-[11px] font-bold tracking-[0.08em] text-accent uppercase">{post.category}</span>
           <h1 className="display mt-5 text-[clamp(2rem,4.2vw,3.4rem)]">{post.title}</h1>

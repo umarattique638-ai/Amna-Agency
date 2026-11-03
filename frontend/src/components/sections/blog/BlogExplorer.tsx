@@ -20,7 +20,7 @@ export function BlogExplorer({ posts }: { posts: BlogPostItem[] }) {
   }, [posts, active, query]);
 
   return (
-    <div className="container-x max-w-[1000px] pb-24">
+    <div className="container-x pb-24">
       <div className="mb-8 flex flex-col items-center justify-between gap-4 sm:flex-row">
         <div role="tablist" aria-label="Filter by topic" className="flex flex-wrap justify-center gap-2">
           {categories.map((c) => (

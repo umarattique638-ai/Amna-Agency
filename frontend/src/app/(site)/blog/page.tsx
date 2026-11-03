@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { BlogExplorer } from "@/components/sections/blog/BlogExplorer";
 import { CtaBanner } from "@/components/shared/CtaBanner";
 import { Eyebrow } from "@/components/ui/SectionHeading";
@@ -16,13 +15,8 @@ export default async function BlogPage() {
   return (
     <>
       <section className="hero-wash">
-        <div className="container-x max-w-[1000px] pt-28">
-          <nav aria-label="Breadcrumb" className="text-[12px] text-mute">
-            <Link href="/" className="hover:text-accent">Home</Link> <span aria-hidden>›</span> <span aria-current="page">Blog</span>
-          </nav>
-        </div>
-        <header className="container-x max-w-2xl pt-14 pb-10 text-center">
-          <Eyebrow>Axiom blog</Eyebrow>
+        <header className="container-x max-w-2xl pt-32 pb-10 text-center md:pt-36">
+          <Eyebrow className="justify-center">Axiom blog</Eyebrow>
           <h1 className="display mt-5 text-[clamp(2rem,4vw,2.9rem)]">
             <span className="text-outline-red">Digital</span> Growth, <span className="text-accent">Explained.</span>
           </h1>

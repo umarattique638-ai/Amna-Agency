@@ -16,7 +16,7 @@ export interface ServiceDTO {
 }
 
 export interface LeadDTO {
-  id: string; name: string; email: string; company: string; services: string[]; budget: string;
+  id: string; name: string; email: string; phone: string; company: string; services: string[]; budget: string;
   message: string; status: "new" | "contacted" | "won" | "lost"; createdAt: string | null;
 }
 

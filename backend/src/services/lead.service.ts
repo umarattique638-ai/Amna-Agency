@@ -1,4 +1,5 @@
 import { env } from "../config/env.js";
+import { mailService } from "./mail.service.js";
 import { Lead, LEAD_STATUS } from "../models/index.js";
 import { ApiError } from "../utils/ApiError.js";
 import { toLeadDTO } from "../dto/index.js";
@@ -7,19 +8,22 @@ import type { ContactInput } from "../validators/contact.validator.js";
 export type LeadStatus = (typeof LEAD_STATUS)[number];
 
 export const leadService = {
-  /** Saves the enquiry and optionally forwards it to a webhook (Slack, Zapier, CRM…). */
+  /**
+   * Saves the enquiry, emails the admins and optionally forwards it to a webhook (Slack, Zapier, CRM…).
+   * Side-effects are awaited (serverless functions freeze after the response) but can never fail the request.
+   */
   async create(input: Omit<ContactInput, "website">, ip: string) {
     const lead = await Lead.create({ ...input, ip });
+    const dto = toLeadDTO(lead.toObject());
 
     const hook = env.CONTACT_WEBHOOK_URL;
-    if (hook) {
-      fetch(hook, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(toLeadDTO(lead.toObject())),
-      }).catch((e) => console.error("[lead] webhook failed", e));
-    }
-    return toLeadDTO(lead.toObject());
+    await Promise.allSettled([
+      mailService.sendLeadNotification(dto),
+      hook
+        ? fetch(hook, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(dto), signal: AbortSignal.timeout(5000) })
+        : Promise.resolve(),
+    ]).then((r) => r.forEach((x) => x.status === "rejected" && console.error("[lead] side-effect failed", x.reason)));
+    return dto;
   },
 
   async list({ status }: { status?: LeadStatus } = {}) {

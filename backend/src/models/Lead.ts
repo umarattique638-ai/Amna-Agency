@@ -7,6 +7,7 @@ const leadSchema = new Schema(
   {
     name: { type: String, required: true, trim: true },
     email: { type: String, required: true, lowercase: true, trim: true },
+    phone: { type: String, default: "" },
     company: { type: String, default: "" },
     services: { type: [String], default: [] },
     budget: { type: String, default: "" },

@@ -48,14 +48,19 @@ export const getServices = cache(async () => {
 });
 
 /** Dashboard gate: asks the API who the cookie belongs to (full blacklist + session check). */
-export async function getSessionUser(): Promise<UserDTO | null> {
+/**
+ * The signed-in user, `null` when not signed in, or `"unreachable"` when the API can't be reached
+ * (so the dashboard shows an error instead of bouncing between /dashboard and /api/auth/refresh).
+ */
+export async function getSessionUser(): Promise<UserDTO | null | "unreachable"> {
   const cookie = (await cookies()).toString();
   if (!cookie) return null;
   try {
     const res = await fetch(`${BACKEND_URL}/api/auth/me`, { headers: { cookie }, cache: "no-store", signal: AbortSignal.timeout(8000) });
-    if (!res.ok) return null;
+    if (res.status === 401 || res.status === 403) return null;
+    if (!res.ok) return "unreachable";
     return (await res.json()).data.user as UserDTO;
   } catch {
-    return null;
+    return "unreachable";
   }
 }

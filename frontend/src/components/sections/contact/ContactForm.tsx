@@ -29,6 +29,7 @@ export function ContactForm({ defaultEmail = "" }: { defaultEmail?: string }) {
     const payload = {
       name: fd.get("name"),
       email: fd.get("email"),
+      phone: fd.get("phone"),
       company: fd.get("company"),
       message: fd.get("message"),
       website: fd.get("website"),
@@ -72,7 +73,10 @@ export function ContactForm({ defaultEmail = "" }: { defaultEmail?: string }) {
         <TextField id="name" name="name" label="Your name" placeholder="Jane Doe" autoComplete="name" error={errors.name} />
         <TextField id="email" name="email" type="email" label="Email" placeholder="jane@company.com" autoComplete="email" defaultValue={defaultEmail} error={errors.email} />
       </div>
-      <TextField id="company" name="company" label="Company (optional)" placeholder="Company Ltd." autoComplete="organization" />
+      <div className="grid gap-10 sm:grid-cols-2">
+        <TextField id="phone" name="phone" type="tel" label="Phone / WhatsApp (optional)" placeholder="+92 300 1234567" autoComplete="tel" error={errors.phone} />
+        <TextField id="company" name="company" label="Company (optional)" placeholder="Company Ltd." autoComplete="organization" />
+      </div>
 
       <PillGroup legend="I'm interested in" name="services" multiple options={SERVICE_OPTIONS} value={services} onChange={setServices} error={errors.services} />
       <PillGroup legend="Budget" name="budget" options={BUDGET_OPTIONS} value={budget} onChange={setBudget} error={errors.budget} />

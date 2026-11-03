@@ -22,7 +22,9 @@ const schema = z.object({
   SMTP_PORT: z.coerce.number().int().default(587),
   SMTP_USER: z.string().optional().default(""),
   SMTP_PASS: z.string().optional().default(""),
-  MAIL_FROM: z.string().default("Axiom <no-reply@axiom.studio>"),
+  MAIL_FROM: z.string().default("Axiom Digital Studio <no-reply@axiom.studio>"),
+  /** Comma-separated admin emails that get an instant alert for every new contact-form lead. */
+  LEAD_NOTIFY_EMAILS: z.string().optional().default(""),
   EMAIL_VERIFY_TTL_HOURS: z.coerce.number().int().positive().default(24),
   /** Cloudinary image uploads (dashboard). Find these on cloudinary.com → Dashboard → API Keys. */
   CLOUDINARY_CLOUD_NAME: z.string().optional().default(""),

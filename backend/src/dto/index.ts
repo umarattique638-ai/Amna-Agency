@@ -20,7 +20,7 @@ export interface ServiceDTO {
   updatedAt: string | null;
 }
 export interface LeadDTO {
-  id: string; name: string; email: string; company: string; services: string[]; budget: string;
+  id: string; name: string; email: string; phone: string; company: string; services: string[]; budget: string;
   message: string; status: string; createdAt: string | null;
 }
 export interface SessionDTO { id: string; userAgent: string; ip: string; createdAt: string | null; lastUsedAt: string | null; current: boolean }
@@ -44,7 +44,7 @@ export const toServiceDTO = (s: any): ServiceDTO => ({
 });
 
 export const toLeadDTO = (l: any): LeadDTO => ({
-  id: id(l), name: l.name, email: l.email, company: l.company ?? "", services: l.services ?? [], budget: l.budget ?? "",
+  id: id(l), name: l.name, email: l.email, phone: l.phone ?? "", company: l.company ?? "", services: l.services ?? [], budget: l.budget ?? "",
   message: l.message, status: l.status, createdAt: iso(l.createdAt),
 });
 

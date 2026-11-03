@@ -3,6 +3,7 @@ import { Reveal } from "@/components/ui/Reveal";
 import { ButtonLink } from "@/components/ui/Button";
 import { cn, pad } from "@/lib/utils";
 import type { ServiceItem } from "@/types";
+import { VideoShowcase } from "./VideoShowcase";
 
 /** One row per service (from the database), alternating photo side. */
 export function ServiceDetails({ services }: { services: ServiceItem[] }) {
@@ -50,6 +51,7 @@ export function ServiceDetails({ services }: { services: ServiceItem[] }) {
                 </div>
               </Reveal>
             </div>
+            {s.slug === "video-editing" && <div className="mt-16"><VideoShowcase /></div>}
           </section>
         );
       })}
